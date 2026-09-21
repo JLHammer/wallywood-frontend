@@ -1,10 +1,12 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
+import { theme } from "./theme";
 import { preflight } from "./preflight";
 
-export const GlobalStyle = createGlobalStyle`
+const globalStyles = css`
   ${preflight}
 
   html {
+    background-color: ${theme.colors.bordeaux};
     scroll-behavior: smooth;
   }
 
@@ -23,18 +25,100 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.colors.white};
-    font-family: ${({ theme }) => theme.fonts.body};
-    font-size: ${({ theme }) => theme.fontSizes.xs};
-    color: ${({ theme }) => theme.colors.text};
+    background-color: ${theme.colors.white};
+    max-width: ${theme.mobile.layout.bodyWidth};
+    width: 100%;
+    min-height: 100dvh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    font-family: ${theme.fonts.body};
+    font-size: ${theme.mobile.fontSizes.body};
+    font-weight: ${theme.fontWeights.regular};
+    line-height: ${theme.mobile.lineHeights.body};
+    color: ${theme.colors.black};
+
+    ${theme.media.desktop} {
+      line-height: ${theme.desktop.lineHeights.body};
+    }
   }
 
-  main:focus {
-    outline: none;
+  #root {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: ${theme.mobile.spacing.m};
+    padding: ${theme.mobile.spacing.m} ${theme.mobile.spacing.xxs} 0;
+  }
+
+  form {
+    padding: 0 ${theme.mobile.spacing.l};
+
+    ${theme.media.tablet} {
+      padding: 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     text-wrap: balance;
+    line-height: normal;
+  }
+
+  h1 {
+    font-family: ${theme.fonts.heading};
+    font-size: ${theme.mobile.fontSizes.h1};
+    font-weight: ${theme.fontWeights.bold};
+    color: ${theme.colors.orange};
+
+    ${theme.media.tablet} {
+      font-size: ${theme.tablet.fontSizes.h1};
+    }
+
+    ${theme.media.desktop} {
+      font-size: ${theme.desktop.fontSizes.h1};
+    }
+  }
+
+  h2 {
+    font-family: ${theme.fonts.heading};
+    font-size: ${theme.mobile.fontSizes.h2};
+    font-weight: ${theme.fontWeights.bold};
+    color: ${theme.colors.orange};
+
+    ${theme.media.tablet} {
+      font-size: ${theme.tablet.fontSizes.h2};
+    }
+
+    ${theme.media.desktop} {
+      font-size: ${theme.desktop.fontSizes.h2};
+    }
+  }
+
+  h3 {
+    font-family: ${theme.fonts.body};
+    font-size: ${theme.mobile.fontSizes.h3};
+    font-weight: ${theme.fontWeights.bold};
+    color: ${theme.colors.black};
+
+    ${theme.media.tablet} {
+      font-size: ${theme.tablet.fontSizes.h3};
+    }
+
+    ${theme.media.desktop} {
+      font-size: ${theme.desktop.fontSizes.h3};
+    }
   }
 
   p {
@@ -42,6 +126,20 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    text-decoration: underline;
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: ${theme.colors.orange};
+    }
   }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: ${theme.colors.placeholder};
+  }
+`;
+
+export const GlobalStyle = createGlobalStyle`
+  ${globalStyles}
 `;

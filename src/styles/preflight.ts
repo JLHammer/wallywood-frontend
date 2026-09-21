@@ -1,12 +1,5 @@
 import { css } from "styled-components";
 
-const fontSans = `ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-  "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
-
-const fontMono = `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-  "Liberation Mono", "Courier New", monospace`;
-
 const headings = "h1, h2, h3, h4, h5, h6";
 
 export const preflight = css`
@@ -19,26 +12,11 @@ export const preflight = css`
   }
 
   html {
-    line-height: 1.5;
     -webkit-text-size-adjust: 100%;
-    -moz-tab-size: 4;
-    tab-size: 4;
-    font-family: ${fontSans};
   }
 
   body {
     margin: 0;
-    line-height: inherit;
-  }
-
-  hr {
-    height: 0;
-    color: inherit;
-    border-top-width: 1px;
-  }
-
-  abbr:where([title]) {
-    text-decoration: underline dotted;
   }
 
   ${headings} {
@@ -46,53 +24,13 @@ export const preflight = css`
     font-weight: inherit;
   }
 
-  a {
-    color: inherit;
-    text-decoration: inherit;
-  }
-
   b,
   strong {
     font-weight: bolder;
   }
 
-  code,
-  kbd,
-  samp,
-  pre {
-    font-family: ${fontMono};
-    font-size: 1em;
-  }
-
-  small {
-    font-size: 80%;
-  }
-
-  sub,
-  sup {
-    font-size: 75%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-  }
-
-  sub {
-    bottom: -0.25em;
-  }
-
-  sup {
-    top: -0.5em;
-  }
-
-  table {
-    text-indent: 0;
-    border-color: inherit;
-    border-collapse: collapse;
-  }
-
   button,
   input,
-  optgroup,
   select,
   textarea {
     font-family: inherit;
@@ -126,56 +64,18 @@ export const preflight = css`
     box-shadow: none;
   }
 
-  progress {
-    vertical-align: baseline;
-  }
-
-  ::-webkit-inner-spin-button,
-  ::-webkit-outer-spin-button {
-    height: auto;
-  }
-
-  [type="search"] {
-    -webkit-appearance: textfield;
-    outline-offset: -2px;
-  }
-
-  ::-webkit-search-decoration {
-    -webkit-appearance: none;
-  }
-
-  ::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit;
-  }
-
-  summary {
-    display: list-item;
-  }
-
   ${headings},
-  blockquote,
-  dl,
-  dd,
-  hr,
-  figure,
-  p,
-  pre {
+  p {
     margin: 0;
   }
 
   fieldset {
+    min-width: 0;
     margin: 0;
     padding: 0;
   }
 
-  legend {
-    padding: 0;
-  }
-
-  ol,
-  ul,
-  menu {
+  ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -190,8 +90,7 @@ export const preflight = css`
     opacity: 1;
   }
 
-  button,
-  [role="button"] {
+  button {
     cursor: pointer;
   }
 
@@ -200,19 +99,16 @@ export const preflight = css`
   }
 
   img,
-  svg,
-  video,
-  canvas,
-  audio,
-  iframe,
-  embed,
-  object {
+  svg {
     display: block;
     vertical-align: middle;
   }
 
-  img,
-  video {
+  svg {
+    overflow: visible;
+  }
+
+  img {
     max-width: 100%;
     height: auto;
   }
