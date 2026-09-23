@@ -3,8 +3,9 @@ import { ROUTES } from "../data/routes";
 import { HomePage } from "../pages/HomePage";
 import { AboutPage } from "../pages/AboutPage";
 import { ContactPage } from "../pages/ContactPage";
+import { LoginPage } from "../pages/LoginPage";
 
-const { home, about, contact } = ROUTES;
+const { home, about, contact, login } = ROUTES;
 
 export const AppRouter = () => {
   return (
@@ -12,6 +13,7 @@ export const AppRouter = () => {
       <Route path={home} element={<HomePage />} />
       <Route path={about} element={<AboutPage />} />
       <Route path={contact} element={<ContactPage />} />
+      <Route path={login} element={<LoginPage />} />
     </Routes>
   );
 };
