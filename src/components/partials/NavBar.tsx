@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { NAV_LINKS, ROUTES } from "../../data/routes";
 import { BurgerMenu } from "../ui/header/BurgerMenu";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useAuth } from "../../hooks/useAuth";
 
 const NavBarStyled = styled.nav`
   display: flex;
@@ -58,6 +59,7 @@ const NavLinkStyled = styled(NavLink)`
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useAuth();
 
   const isTabletUp = useMediaQuery(`(min-width: ${theme.breakpoints.tablet})`);
 
@@ -83,7 +85,7 @@ export const NavBar = () => {
             ))}
             <li>
               <NavLinkStyled to={ROUTES.login} onClick={closeMenu}>
-                Login
+                {user ? "Logout" : "Login"}
               </NavLinkStyled>
             </li>
           </NavBarList>

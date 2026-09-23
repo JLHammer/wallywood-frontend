@@ -1,2 +1,1 @@
-/* Type definitions exports */
-export type { Image } from "./common";
+export type * from "./api";
