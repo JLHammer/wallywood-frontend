@@ -5,8 +5,9 @@ import { AboutPage } from "../pages/AboutPage";
 import { ContactPage } from "../pages/ContactPage";
 import { LoginPage } from "../pages/LoginPage";
 import { SignupPage } from "../pages/SignupPage";
+import { CheckoutPage } from "../pages/CheckoutPage";
 
-const { home, about, contact, login, signup } = ROUTES;
+const { home, about, contact, login, signup, checkout } = ROUTES;
 
 export const AppRouter = () => {
   return (
@@ -16,6 +17,7 @@ export const AppRouter = () => {
       <Route path={contact} element={<ContactPage />} />
       <Route path={login} element={<LoginPage />} />
       <Route path={signup} element={<SignupPage />} />
+      <Route path={checkout} element={<CheckoutPage />} />
     </Routes>
   );
 };
