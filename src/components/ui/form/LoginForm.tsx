@@ -10,6 +10,7 @@ import {
 } from "../../../schemas/loginSchema";
 import { ROUTES } from "../../../data/routes";
 import { useAuth } from "../../../hooks/useAuth";
+import { useLikes } from "../../../hooks/useLikes";
 import { FormField } from "./FormField";
 import { FormButtonGroup } from "./FormButtonGroup";
 import { Button } from "../button/Button";
@@ -95,12 +96,16 @@ export const LoginForm = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const { from } = (location.state as { from?: string } | null) ?? {};
+  const { likeAfterLogin } = useLikes();
+  const { from, likePosterId } =
+    (location.state as { from?: string; likePosterId?: number } | null) ?? {};
 
   const onSubmit = async ({ email, password }: LoginFormValues) => {
+    likeAfterLogin(likePosterId ?? null);
     const success = await login(email, password);
 
     if (!success) {
+      likeAfterLogin(null);
       setStatus("Forkert email eller adgangskode.");
       return;
     }
