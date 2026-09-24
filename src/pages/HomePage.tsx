@@ -1,5 +1,6 @@
 import { MainLayout } from "../components/layout/MainLayout";
 import { HeroSection } from "../components/sections/HeroSection";
+import { RandomPostersSection } from "../components/sections/RandomPostersSection";
 import { createGlobalStyle, css } from "styled-components";
 import reel from "../assets/images/reel.jpg";
 import { theme } from "../styles/theme";
@@ -31,6 +32,7 @@ export const HomePage = () => {
     <MainLayout>
       <ReelBackground />
       <HeroSection />
+      <RandomPostersSection />
     </MainLayout>
   );
 };
