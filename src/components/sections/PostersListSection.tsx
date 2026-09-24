@@ -1,12 +1,16 @@
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
 import { usePosters } from "../../hooks/usePosters";
 import { useGenres } from "../../hooks/useGenres";
+import { getSortOption } from "../../data/sortOptions";
 import { PostersLayout } from "../layout/PostersLayout";
 import { Loader } from "../ui/Loader";
+import { SortSelect } from "../ui/SortSelect";
 import { PostersListCard } from "../ui/poster/PostersListCard";
 import { Divider } from "../ui/Divider";
+import { Pagination } from "../ui/Pagination";
 
 const ListTitle = styled.h2`
   font-family: ${theme.fonts.body};
@@ -39,10 +43,24 @@ const ListViewPostersList = styled.ul`
 
 export const PostersListSection = () => {
   const { genreSlug } = useParams();
+  const [searchParams] = useSearchParams();
+  const pageParam = Number(searchParams.get("page"));
+  const page = Number.isInteger(pageParam) && pageParam > 0 ? pageParam : 1;
+  const { sortBy, sort } = getSortOption(searchParams.get("sort"));
 
-  const { data, error, isLoading } = usePosters({ limit: 24, genreSlug });
+  const { data, error, isLoading } = usePosters({
+    page,
+    limit: 24,
+    sortBy,
+    sort,
+    genreSlug,
+  });
   const { data: genresData } = useGenres();
   const genre = genresData?.genres.find((g) => g.slug === genreSlug);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [page]);
 
   const renderPosters = () => {
     if (isLoading) return <Loader />;
@@ -68,9 +86,14 @@ export const PostersListSection = () => {
             </li>
           ))}
         </ListViewPostersList>
+        <Pagination page={data.page} totalPages={data.totalPages} />
       </>
     );
   };
 
-  return <PostersLayout>{renderPosters()}</PostersLayout>;
+  return (
+    <PostersLayout headerAction={<SortSelect />}>
+      {renderPosters()}
+    </PostersLayout>
+  );
 };
