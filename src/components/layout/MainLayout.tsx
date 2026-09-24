@@ -6,6 +6,7 @@ import { NavBar } from "../partials/NavBar";
 import { Footer } from "../partials/Footer";
 import { Logo } from "../ui/header/Logo";
 import { Cart } from "../ui/header/Cart";
+import { FavoritesLink } from "../ui/header/FavoritesLink";
 
 type MainLayoutProps = {
   children?: ReactNode;
@@ -33,6 +34,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         <Logo />
         <NavBar />
         <HeaderActions>
+          <FavoritesLink />
           <Cart />
         </HeaderActions>
       </Header>

@@ -57,6 +57,16 @@ const NavLinkStyled = styled(NavLink)`
   }
 `;
 
+const FavoritesItem = styled.li`
+  ${theme.media.tablet} {
+    display: none;
+  }
+
+  ${theme.media.desktop} {
+    display: list-item;
+  }
+`;
+
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user } = useAuth();
@@ -83,6 +93,13 @@ export const NavBar = () => {
                 </NavLinkStyled>
               </li>
             ))}
+            {user && (
+              <FavoritesItem>
+                <NavLinkStyled to={ROUTES.likedPosters} onClick={closeMenu}>
+                  Favoritter
+                </NavLinkStyled>
+              </FavoritesItem>
+            )}
             <li>
               <NavLinkStyled to={ROUTES.login} onClick={closeMenu}>
                 {user ? "Logout" : "Login"}
