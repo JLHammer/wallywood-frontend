@@ -4,7 +4,7 @@ import { useRandomPosters } from "../../hooks/usePosters";
 import { RandomPostersCard } from "../ui/poster/RandomPostersCard";
 import { Loader } from "../ui/Loader";
 import { Divider } from "../ui/Divider";
-import { LargeButton } from "../ui/button/LargeButton";
+import { Button } from "../ui/button/Button";
 
 const RandomPostersSectionStyled = styled.section`
   ${theme.media.desktop} {
@@ -78,9 +78,9 @@ export const RandomPostersSection = () => {
     <RandomPostersSectionStyled>
       <SectionHeader>
         <h1>Fire tilfældige ...</h1>
-        <LargeButton type="button" onClick={getNewPosters} disabled={isLoading}>
+        <Button size="large" onClick={getNewPosters} disabled={isLoading}>
           Fire nye ...
-        </LargeButton>
+        </Button>
       </SectionHeader>
       {renderContent()}
     </RandomPostersSectionStyled>

@@ -65,7 +65,7 @@ const mobile = {
     aboutImageSize: "20.9375rem",
     socialIcon: "3.5rem",
     reelBackgroundSize: "350% auto",
-    cartModalWidth: "80%",
+    cartModalWidth: "85%",
     cartImageWidth: "4.5rem",
     closeIconSize: "1.75rem",
     cartBadgeSize: "1.125rem",
@@ -167,8 +167,12 @@ export const theme = {
   colors: {
     bordeaux: "#5c1f06",
     orange: "#d97852",
-    buttonSkin: "#d1b3a7",
+    rosyBeige: "#d1b3a7",
     frostyBlue: "#4088ad",
+    success: "#7a9e5f",
+    alert: "#d9534a",
+    disabled: "#cfcac7",
+    disabledText: "#7a716d",
 
     white: "#ffffff",
     black: "#000000",

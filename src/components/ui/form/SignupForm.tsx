@@ -12,7 +12,6 @@ import { ROUTES } from "../../../data/routes";
 import { FormField } from "./FormField";
 import { FormButtonGroup } from "./FormButtonGroup";
 import { Button } from "../button/Button";
-import { ButtonLink } from "../button/ButtonLink";
 
 const SignupFormStyled = styled.form`
   width: ${theme.mobile.sizes.inputWidth};
@@ -53,7 +52,7 @@ export const SignupForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: emptyValues,
@@ -75,7 +74,7 @@ export const SignupForm = () => {
     return (
       <>
         <p>Velkommen, {createdName}! Din profil er oprettet.</p>
-        <ButtonLink to={ROUTES.login}>Gå til login</ButtonLink>
+        <Button to={ROUTES.login}>Gå til login</Button>
       </>
     );
   }
@@ -133,10 +132,20 @@ export const SignupForm = () => {
         />
       </Fields>
       <FormButtonGroup>
-        <Button type="submit" disabled={isLoading}>
+        <Button
+          type="submit"
+          size="large"
+          variant="success"
+          disabled={isLoading}
+        >
           {isLoading ? "Opretter..." : "Opret profil"}
         </Button>
-        <Button type="button" onClick={() => reset()}>
+        <Button
+          size="large"
+          variant="alert"
+          disabled={!isDirty}
+          onClick={() => reset()}
+        >
           Annuller
         </Button>
       </FormButtonGroup>

@@ -6,6 +6,8 @@ import { theme } from "../../../styles/theme";
 import { useAuth } from "../../../hooks/useAuth";
 import { useLikes } from "../../../hooks/useLikes";
 import { ROUTES } from "../../../data/routes";
+import { Button } from "./Button";
+import type { ButtonSize } from "./buttonStyles";
 
 const FilledHeart = styled(FaHeart)<{ $isLiked: boolean }>`
   position: absolute;
@@ -13,35 +15,22 @@ const FilledHeart = styled(FaHeart)<{ $isLiked: boolean }>`
   transition: opacity 0.2s ease-out;
 `;
 
-const LikeButtonStyled = styled.button`
-  width: ${theme.mobile.sizes.likeButtonWidth};
-  height: ${theme.mobile.sizes.likeButtonHeight};
-  flex-shrink: 0;
+const LikeButtonStyled = styled(Button)`
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${theme.colors.buttonSkin};
-  border: ${theme.borders.width} solid ${theme.colors.buttonBorder};
-  border-radius: ${theme.radii.button};
-  transition: 0.2s ease-out;
 
   ${theme.media.hover} {
-    &:hover {
-      background-color: ${theme.colors.orange};
-
-      ${FilledHeart} {
-        opacity: 1;
-      }
+    &:hover:not(:disabled) ${FilledHeart} {
+      opacity: 1;
     }
   }
 `;
 
 interface LikeButtonProps {
   posterId: number;
+  size?: Extract<ButtonSize, "icon" | "iconLarge">;
 }
 
-export const LikeButton = ({ posterId }: LikeButtonProps) => {
+export const LikeButton = ({ posterId, size = "icon" }: LikeButtonProps) => {
   const { user } = useAuth();
   const { isLiked, toggleLike } = useLikes();
   const navigate = useNavigate();
@@ -67,7 +56,7 @@ export const LikeButton = ({ posterId }: LikeButtonProps) => {
 
   return (
     <LikeButtonStyled
-      type="button"
+      size={size}
       title={liked ? "Fjern like" : "Like plakaten"}
       onClick={handleClick}
       disabled={isPending}

@@ -6,7 +6,6 @@ import { toParagraphs } from "../../../utils/text";
 import { PosterFrame } from "./PosterFrame";
 import { PosterImage } from "./PosterImage";
 import { ReadMoreButton } from "../button/ReadMoreButton";
-import { ButtonLink } from "../button/ButtonLink";
 import { LikeButton } from "../button/LikeButton";
 import { posterPath } from "../../../data/routes";
 
@@ -93,34 +92,10 @@ const ButtonGroup = styled.div`
 
   ${theme.media.tablet} {
     margin-top: auto;
-
-    ${ButtonLink} {
-      width: ${theme.tablet.sizes.formButtonWidth};
-      height: ${theme.tablet.sizes.formButtonHeight};
-      font-size: ${theme.tablet.fontSizes.formText};
-    }
-
-    & > button {
-      width: ${theme.tablet.sizes.formButtonHeight};
-      height: ${theme.tablet.sizes.formButtonHeight};
-      font-size: ${theme.tablet.fontSizes.formText};
-    }
   }
 
   ${theme.media.desktop} {
     justify-content: flex-start;
-
-    ${ButtonLink} {
-      width: ${theme.desktop.sizes.buttonWidth};
-      height: ${theme.desktop.sizes.buttonHeight};
-      font-size: ${theme.desktop.fontSizes.formText};
-    }
-
-    & > button {
-      width: ${theme.desktop.sizes.likeButtonWidth};
-      height: ${theme.desktop.sizes.likeButtonHeight};
-      font-size: inherit;
-    }
   }
 `;
 
@@ -151,7 +126,7 @@ export const RandomPostersCard = ({ poster }: RandomPostersCardProps) => {
         </p>
         <ButtonGroup>
           <ReadMoreButton to={posterPath(poster.slug)} />
-          <LikeButton posterId={poster.id} />
+          <LikeButton posterId={poster.id} size="iconLarge" />
         </ButtonGroup>
       </CardContent>
     </RandomPosterCardStyled>

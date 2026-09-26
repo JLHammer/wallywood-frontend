@@ -1,7 +1,7 @@
-import { Link, useSearchParams } from "react-router-dom";
-import styled, { css } from "styled-components";
+import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
 import { theme } from "../../styles/theme";
-import { buttonStyles } from "./button/buttonStyles";
+import { Button } from "./button/Button";
 
 type PaginationProps = {
   page: number;
@@ -15,39 +15,6 @@ const PaginationList = styled.ul`
   align-items: center;
   gap: ${theme.mobile.spacing.xs};
   margin-top: ${theme.mobile.spacing.xl};
-`;
-
-const squareStyles = css`
-  ${buttonStyles}
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: ${theme.mobile.sizes.pageSquareSize};
-  height: ${theme.mobile.sizes.pageSquareSize};
-  color: ${theme.colors.black};
-
-  ${theme.media.tablet} {
-    width: ${theme.tablet.sizes.pageSquareSize};
-    height: ${theme.tablet.sizes.pageSquareSize};
-  }
-
-  ${theme.media.desktop} {
-    width: ${theme.desktop.sizes.pageSquareSize};
-    height: ${theme.desktop.sizes.pageSquareSize};
-  }
-`;
-
-const PageLink = styled(Link)`
-  ${squareStyles}
-
-  &:hover {
-    color: ${theme.colors.black};
-  }
-`;
-
-const CurrentPage = styled.span`
-  ${squareStyles}
-  background-color: ${theme.colors.orange};
 `;
 
 const PAGES_AROUND_CURRENT = 2;
@@ -84,9 +51,15 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
         {getPageNumbers(page, totalPages).map((n, index) => (
           <li key={n === "…" ? `gap-${index}` : n}>
             {n === "…" && n}
-            {n === page && <CurrentPage>{n}</CurrentPage>}
-            {typeof n === "number" && n !== page && (
-              <PageLink to={pageSearch(n)}>{n}</PageLink>
+            {typeof n === "number" && (
+              <Button
+                to={pageSearch(n)}
+                size="square"
+                isActive={n === page}
+                aria-current={n === page ? "page" : undefined}
+              >
+                {n}
+              </Button>
             )}
           </li>
         ))}

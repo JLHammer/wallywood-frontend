@@ -6,12 +6,13 @@ import { useCart } from "../../../hooks/useCart";
 import { posterPath } from "../../../data/routes";
 import { formatPrice } from "../../../utils/text";
 import type { CartItem } from "../../../types";
+import { Button } from "../button/Button";
 
 const CartLineStyled = styled.li`
   display: flex;
   gap: ${theme.mobile.spacing.m};
   padding-bottom: ${theme.mobile.spacing.m};
-  border-bottom: ${theme.borders.width} solid ${theme.colors.buttonSkin};
+  border-bottom: ${theme.borders.width} solid ${theme.colors.rosyBeige};
 
   ${theme.media.tablet} {
     gap: ${theme.mobile.spacing.l};
@@ -82,30 +83,12 @@ const Quantity = styled.span`
   }
 `;
 
-const SmallButton = styled.button`
-  width: ${theme.mobile.sizes.likeButtonWidth};
-  height: ${theme.mobile.sizes.likeButtonHeight};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${theme.colors.buttonSkin};
-  border: ${theme.borders.width} solid ${theme.colors.buttonBorder};
-  border-radius: ${theme.radii.button};
-  transition: background-color 0.2s ease-out;
-
-  &:hover {
-    background-color: ${theme.colors.orange};
-  }
-
+const SmallButton = styled(Button)`
   ${theme.media.tablet} {
-    width: ${theme.tablet.sizes.formButtonHeight};
-    height: ${theme.tablet.sizes.formButtonHeight};
     font-size: ${theme.tablet.fontSizes.h3};
   }
 
   ${theme.media.desktop} {
-    width: ${theme.desktop.sizes.likeButtonWidth};
-    height: ${theme.desktop.sizes.likeButtonHeight};
     font-size: inherit;
   }
 `;
@@ -132,22 +115,24 @@ export const CartLine = ({ item, onNavigate }: CartLineProps) => {
         <p>{formatPrice(Number(item.price) * item.quantity)} DKK</p>
         <Controls>
           <SmallButton
-            type="button"
+            size="iconLarge"
             title="Fjern én"
+            disabled={item.quantity === 0}
             onClick={() => updateQuantity(item.id, item.quantity - 1)}
           >
             <LuMinus />
           </SmallButton>
           <Quantity>{item.quantity}</Quantity>
           <SmallButton
-            type="button"
+            size="iconLarge"
             title="Tilføj én"
             onClick={() => updateQuantity(item.id, item.quantity + 1)}
           >
             <LuPlus />
           </SmallButton>
           <RemoveButton
-            type="button"
+            size="iconLarge"
+            variant="alert"
             title="Fjern fra kurv"
             onClick={() => removeItem(item.id)}
           >

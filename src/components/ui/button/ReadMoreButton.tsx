@@ -1,9 +1,13 @@
-import { ButtonLink } from "./ButtonLink";
+import { Button } from "./Button";
 
 interface ReadMoreButtonProps {
   to: string;
 }
 
 export const ReadMoreButton = ({ to }: ReadMoreButtonProps) => {
-  return <ButtonLink to={to}>Læs mere</ButtonLink>;
+  return (
+    <Button to={to} size="large">
+      Læs mere
+    </Button>
+  );
 };

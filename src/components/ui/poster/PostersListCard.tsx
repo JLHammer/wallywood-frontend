@@ -6,7 +6,6 @@ import { PosterFrame } from "./PosterFrame";
 import { PosterImage } from "./PosterImage";
 import { PutInCartButton } from "../button/PutInCartButton";
 import { LikeButton } from "../button/LikeButton";
-import { Button } from "../button/Button";
 import { posterPath } from "../../../data/routes";
 import { formatPrice } from "../../../utils/text";
 
@@ -93,35 +92,9 @@ const ButtonGroup = styled.div`
   justify-content: center;
   gap: ${theme.mobile.spacing.s};
 
-  ${theme.media.tablet} {
-    ${Button} {
-      width: ${theme.tablet.sizes.formButtonWidth};
-      height: ${theme.tablet.sizes.formButtonHeight};
-      font-size: ${theme.tablet.fontSizes.formText};
-    }
-
-    & > button:last-child {
-      width: ${theme.tablet.sizes.formButtonHeight};
-      height: ${theme.tablet.sizes.formButtonHeight};
-      font-size: ${theme.tablet.fontSizes.formText};
-    }
-  }
-
   ${theme.media.desktop} {
     gap: ${theme.desktop.spacing.xxs};
     padding-top: ${theme.desktop.spacing.xs};
-
-    ${Button} {
-      width: ${theme.desktop.sizes.buttonWidth};
-      height: ${theme.desktop.sizes.buttonHeight};
-      font-size: ${theme.desktop.fontSizes.formText};
-    }
-
-    & > button:last-child {
-      width: ${theme.desktop.sizes.likeButtonWidth};
-      height: ${theme.desktop.sizes.likeButtonHeight};
-      font-size: inherit;
-    }
   }
 `;
 
@@ -141,8 +114,8 @@ export const PostersListCard = ({ poster }: PostersListCardProps) => {
         <Title>{poster.name}</Title>
         <Price>Kr. {formatPrice(poster.price)}</Price>
         <ButtonGroup>
-          <PutInCartButton poster={poster} />
-          <LikeButton posterId={poster.id} />
+          <PutInCartButton poster={poster} size="large" />
+          <LikeButton posterId={poster.id} size="iconLarge" />
         </ButtonGroup>
       </CardContent>
     </PostersListCardStyled>

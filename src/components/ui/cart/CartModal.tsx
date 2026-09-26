@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../styles/theme";
-import { LargeButton } from "../button/LargeButton";
-import { largeButtonStyles } from "../button/buttonStyles";
-import { ButtonLink } from "../button/ButtonLink";
+import { Button } from "../button/Button";
 import { CloseButton } from "./CloseButton";
 import { CartLine } from "./CartLine";
 import { useCart } from "../../../hooks/useCart";
@@ -88,10 +86,6 @@ const CartList = styled.ul`
   }
 `;
 
-const EmptyLink = styled(ButtonLink)`
-  ${largeButtonStyles}
-`;
-
 const EmptyText = styled.p`
   flex: 1;
 `;
@@ -109,13 +103,33 @@ const Total = styled.p`
 `;
 
 const Actions = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-areas:
+    "clear ."
+    "shop checkout";
+  justify-content: start;
   gap: ${theme.mobile.spacing.s};
+
+  ${theme.media.tablet} {
+    display: flex;
+    flex-wrap: wrap;
+  }
+`;
+
+const ClearButton = styled(Button)`
+  grid-area: clear;
+`;
+
+const ShopButton = styled(Button)`
+  grid-area: shop;
+`;
+
+const CheckoutButton = styled(Button)`
+  grid-area: checkout;
 `;
 
 export const CartModal = () => {
-  const { items, total, clearCart, isOpen, closeCart } = useCart();
+  const { items, count, total, clearCart, isOpen, closeCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -163,10 +177,10 @@ export const CartModal = () => {
             </CartHeader>
             {items.length === 0 ? (
               <>
-                <EmptyText>Din kurv er tom.</EmptyText>
-                <EmptyLink to={ROUTES.posters} onClick={closeCart}>
+                <EmptyText>Din kurv er tom</EmptyText>
+                <Button to={ROUTES.posters} size="large" onClick={closeCart}>
                   Se plakater
-                </EmptyLink>
+                </Button>
               </>
             ) : (
               <>
@@ -185,15 +199,24 @@ export const CartModal = () => {
                     <span>{formatPrice(total)} DKK</span>
                   </Total>
                   <Actions>
-                    <LargeButton type="button" onClick={closeCart}>
-                      Shop videre
-                    </LargeButton>
-                    <LargeButton type="button" onClick={handleCheckout}>
-                      Til checkout
-                    </LargeButton>
-                    <LargeButton type="button" onClick={clearCart}>
+                    <ClearButton
+                      size="large"
+                      variant="alert"
+                      onClick={clearCart}
+                    >
                       Tøm kurv
-                    </LargeButton>
+                    </ClearButton>
+                    <ShopButton size="large" onClick={closeCart}>
+                      Shop videre
+                    </ShopButton>
+                    <CheckoutButton
+                      size="large"
+                      variant="success"
+                      disabled={count === 0}
+                      onClick={handleCheckout}
+                    >
+                      Til checkout
+                    </CheckoutButton>
                   </Actions>
                 </Summary>
               </>

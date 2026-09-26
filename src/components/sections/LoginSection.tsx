@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import { LoginForm } from "../ui/form/LoginForm";
-import { LargeButton } from "../ui/button/LargeButton";
+import { Button } from "../ui/button/Button";
 import { useAuth } from "../../hooks/useAuth";
 
 const LoginSectionStyled = styled.section`
@@ -31,9 +31,9 @@ export const LoginSection = () => {
       {user ? (
         <>
           <LoggedInText>Du er logget ind som {user.firstName}.</LoggedInText>
-          <LargeButton type="button" onClick={logout}>
+          <Button size="large" variant="alert" onClick={logout}>
             Log ud
-          </LargeButton>
+          </Button>
         </>
       ) : (
         <LoginForm />

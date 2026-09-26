@@ -32,6 +32,19 @@ const Fields = styled.fieldset`
   gap: ${theme.mobile.spacing.m};
 `;
 
+const StatusText = styled.p`
+  padding: 0 ${theme.mobile.spacing.l};
+  text-align: center;
+
+  ${theme.media.tablet} {
+    padding: 0;
+  }
+
+  ${theme.media.desktop} {
+    text-align: left;
+  }
+`;
+
 const emptyValues: ContactFormValues = {
   name: "",
   email: "",
@@ -44,7 +57,7 @@ export const ContactForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
     defaultValues: emptyValues,
@@ -105,14 +118,21 @@ export const ContactForm = () => {
           />
         </Fields>
         <FormButtonGroup>
-          <Button type="submit">Send</Button>
-          <Button type="button" onClick={handleReset}>
+          <Button type="submit" size="large" variant="success">
+            Send
+          </Button>
+          <Button
+            size="large"
+            variant="alert"
+            disabled={!isDirty}
+            onClick={handleReset}
+          >
             Annuller
           </Button>
         </FormButtonGroup>
       </ContactFormStyled>
 
-      {status && <p>{status}</p>}
+      {status && <StatusText>{status}</StatusText>}
     </>
   );
 };

@@ -6,7 +6,6 @@ import { PosterFrame } from "./PosterFrame";
 import { PosterImage } from "./PosterImage";
 import { ReadMoreButton } from "../button/ReadMoreButton";
 import { LikeButton } from "../button/LikeButton";
-import { ButtonLink } from "../button/ButtonLink";
 import { posterPath } from "../../../data/routes";
 
 const LikedPostersCardStyled = styled.article`
@@ -51,34 +50,6 @@ const ButtonGroup = styled.div`
   display: flex;
   justify-content: center;
   gap: ${theme.mobile.spacing.s};
-
-  ${theme.media.tablet} {
-    ${ButtonLink} {
-      width: ${theme.tablet.sizes.formButtonWidth};
-      height: ${theme.tablet.sizes.formButtonHeight};
-      font-size: ${theme.tablet.fontSizes.formText};
-    }
-
-    & > button {
-      width: ${theme.tablet.sizes.formButtonHeight};
-      height: ${theme.tablet.sizes.formButtonHeight};
-      font-size: ${theme.tablet.fontSizes.formText};
-    }
-  }
-
-  ${theme.media.desktop} {
-    ${ButtonLink} {
-      width: ${theme.desktop.sizes.buttonWidth};
-      height: ${theme.desktop.sizes.buttonHeight};
-      font-size: ${theme.desktop.fontSizes.formText};
-    }
-
-    & > button {
-      width: ${theme.desktop.sizes.likeButtonWidth};
-      height: ${theme.desktop.sizes.likeButtonHeight};
-      font-size: inherit;
-    }
-  }
 `;
 
 interface LikedPostersCardProps {
@@ -97,7 +68,7 @@ export const LikedPostersCard = ({ poster }: LikedPostersCardProps) => {
         <Title>{poster.name}</Title>
         <ButtonGroup>
           <ReadMoreButton to={posterPath(poster.slug)} />
-          <LikeButton posterId={poster.id} />
+          <LikeButton posterId={poster.id} size="iconLarge" />
         </ButtonGroup>
       </CardContent>
     </LikedPostersCardStyled>

@@ -87,7 +87,7 @@ export const LoginForm = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isDirty },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: emptyValues,
@@ -148,10 +148,20 @@ export const LoginForm = () => {
           />
         </Fields>
         <FormButtonGroup>
-          <Button type="submit" disabled={isSubmitting}>
+          <Button
+            type="submit"
+            size="large"
+            variant="success"
+            disabled={isSubmitting}
+          >
             Login
           </Button>
-          <Button type="button" onClick={handleReset}>
+          <Button
+            size="large"
+            variant="alert"
+            disabled={!isDirty}
+            onClick={handleReset}
+          >
             Annuller
           </Button>
         </FormButtonGroup>

@@ -5,7 +5,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useLikedPosters } from "../../hooks/useLikedPosters";
 import { ROUTES } from "../../data/routes";
 import { Loader } from "../ui/Loader";
-import { ButtonLink } from "../ui/button/ButtonLink";
+import { Button } from "../ui/button/Button";
 import { LikedPostersCard } from "../ui/poster/LikedPostersCard";
 
 const LikedPostersSectionStyled = styled.section``;
@@ -49,9 +49,9 @@ export const LikedPostersSection = () => {
       return (
         <>
           <p>Log ind for at se de plakater, du har liket.</p>
-          <ButtonLink to={ROUTES.login} state={{ from: location.pathname }}>
+          <Button to={ROUTES.login} state={{ from: location.pathname }}>
             Login
-          </ButtonLink>
+          </Button>
         </>
       );
     }

@@ -34,12 +34,12 @@ const fieldStyles = css<{ $hasError: boolean }>`
   padding: 0 ${theme.mobile.spacing.s};
   background-color: ${theme.colors.inputBackground};
   border: none;
-  border-top: ${theme.borders.width} solid ${theme.colors.buttonSkin};
+  border-top: ${theme.borders.width} solid ${theme.colors.rosyBeige};
   box-shadow: ${theme.shadows.inputInset};
   border-radius: ${theme.radii.input};
 
   &:focus-visible {
-    outline: ${theme.outlines.width} solid ${theme.colors.buttonSkin};
+    outline: ${theme.outlines.width} solid ${theme.colors.orange};
     border: none;
   }
 

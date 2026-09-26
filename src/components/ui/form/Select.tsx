@@ -50,11 +50,11 @@ const SelectStyled = styled.select`
   font-family: ${theme.fonts.select};
   color: ${theme.colors.black};
   background-color: ${theme.colors.inputBackground};
-  border: ${theme.borders.width} solid ${theme.colors.buttonSkin};
+  border: ${theme.borders.width} solid ${theme.colors.rosyBeige};
   border-radius: ${theme.radii.input};
 
   &:focus-visible {
-    outline: ${theme.outlines.width} solid ${theme.colors.buttonSkin};
+    outline: ${theme.outlines.width} solid ${theme.colors.orange};
   }
 
   ${theme.media.tablet} {
@@ -69,7 +69,7 @@ const SelectStyled = styled.select`
     padding-left: ${theme.desktop.spacing.xs};
     font-size: ${theme.desktop.fontSizes.content};
     border: none;
-    border-top: ${theme.borders.width} solid ${theme.colors.buttonSkin};
+    border-top: ${theme.borders.width} solid ${theme.colors.rosyBeige};
     border-radius: 0;
     box-shadow: ${theme.shadows.inputInset};
   }
