@@ -71,6 +71,12 @@ const mobile = {
     cartBadgeSize: "1.125rem",
     pageSquareSize: "2rem",
   },
+  lineClamps: {
+    frontpageCardText: 6,
+  },
+  charsPerLine: {
+    frontpageCardText: 34,
+  },
 };
 
 const tablet = {
@@ -111,6 +117,9 @@ const tablet = {
   },
   lineClamps: {
     frontpageCardText: 5,
+  },
+  charsPerLine: {
+    frontpageCardText: 42,
   },
 };
 
@@ -160,6 +169,9 @@ const desktop = {
   },
   lineClamps: {
     frontpageCardText: 4,
+  },
+  charsPerLine: {
+    frontpageCardText: 44,
   },
 };
 

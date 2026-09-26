@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { theme } from "../../../styles/theme";
 import type { Poster } from "../../../types";
-import { toParagraphs } from "../../../utils/text";
+import { truncateParagraphs } from "../../../utils/text";
+import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { PosterFrame } from "./PosterFrame";
 import { PosterImage } from "./PosterImage";
 import { ReadMoreButton } from "../button/ReadMoreButton";
@@ -73,11 +74,13 @@ const Title = styled.h3`
 `;
 
 const Description = styled.div`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: ${theme.mobile.lineClamps.frontpageCardText};
+  overflow: hidden;
+
   ${theme.media.tablet} {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: ${theme.tablet.lineClamps.frontpageCardText};
-    overflow: hidden;
   }
 
   ${theme.media.desktop} {
@@ -104,6 +107,22 @@ interface RandomPostersCardProps {
 }
 
 export const RandomPostersCard = ({ poster }: RandomPostersCardProps) => {
+  const isTabletUp = useMediaQuery(`(min-width: ${theme.breakpoints.tablet})`);
+  const isDesktopUp = useMediaQuery(
+    `(min-width: ${theme.breakpoints.desktop})`,
+  );
+
+  const sizes = isDesktopUp
+    ? theme.desktop
+    : isTabletUp
+      ? theme.tablet
+      : theme.mobile;
+  const paragraphs = truncateParagraphs(
+    poster.description,
+    sizes.lineClamps.frontpageCardText,
+    sizes.charsPerLine.frontpageCardText,
+  );
+
   return (
     <RandomPosterCardStyled>
       <ImageLink to={posterPath(poster.slug)}>
@@ -114,7 +133,7 @@ export const RandomPostersCard = ({ poster }: RandomPostersCardProps) => {
       <CardContent>
         <Title>{poster.name}</Title>
         <Description>
-          {toParagraphs(poster.description).map((paragraph, index) => (
+          {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </Description>
