@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { ROUTES } from "../data/routes";
+import { ProtectedRoute } from "./ProtectedRoute";
 import { HomePage } from "../pages/HomePage";
 import { PostersListPage } from "../pages/PostersListPage";
 import { PostersDetailsPage } from "../pages/PostersDetailsPage";
@@ -34,7 +35,9 @@ export const AppRouter = () => {
       <Route path={contact} element={<ContactPage />} />
       <Route path={login} element={<LoginPage />} />
       <Route path={signup} element={<SignupPage />} />
-      <Route path={likedPosters} element={<LikedPostersPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route path={likedPosters} element={<LikedPostersPage />} />
+      </Route>
       <Route path={checkout} element={<CheckoutPage />} />
     </Routes>
   );

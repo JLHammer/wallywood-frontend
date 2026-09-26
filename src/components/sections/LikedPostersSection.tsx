@@ -1,7 +1,5 @@
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
 import { useLikedPosters } from "../../hooks/useLikedPosters";
 import { ROUTES } from "../../data/routes";
 import { Loader } from "../ui/Loader";
@@ -39,26 +37,20 @@ const LikedPostersList = styled.ul`
 `;
 
 export const LikedPostersSection = () => {
-  const { user, isLoading: isAuthLoading } = useAuth();
   const { data, error, isLoading } = useLikedPosters();
-  const location = useLocation();
 
   const renderPosters = () => {
-    if (isAuthLoading) return <Loader />;
-    if (!user) {
-      return (
-        <>
-          <p>Log ind for at se de plakater, du har liket.</p>
-          <Button to={ROUTES.login} state={{ from: location.pathname }}>
-            Login
-          </Button>
-        </>
-      );
-    }
     if (isLoading) return <Loader />;
     if (error || !data) return <p>Kunne ikke hente plakater</p>;
     if (data.likes.length === 0)
-      return <p>Du har ikke liket nogen plakater endnu</p>;
+      return (
+        <>
+          <p>Du har ikke liket nogen plakater endnu</p>
+          <Button to={ROUTES.posters} size="large">
+            Se plakater
+          </Button>
+        </>
+      );
 
     return (
       <LikedPostersList>
