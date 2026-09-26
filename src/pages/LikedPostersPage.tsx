@@ -3,7 +3,7 @@ import { LikedPostersSection } from "../components/sections/LikedPostersSection"
 
 export const LikedPostersPage = () => {
   return (
-    <MainLayout>
+    <MainLayout pageTitle="Favoritter">
       <LikedPostersSection />
     </MainLayout>
   );

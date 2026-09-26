@@ -3,7 +3,7 @@ import { ContactSection } from "../components/sections/ContactSection";
 
 export const ContactPage = () => {
   return (
-    <MainLayout>
+    <MainLayout pageTitle="Kontakt os">
       <ContactSection />
     </MainLayout>
   );

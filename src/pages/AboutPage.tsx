@@ -3,7 +3,7 @@ import { AboutSection } from "../components/sections/AboutSection";
 
 export const AboutPage = () => {
   return (
-    <MainLayout>
+    <MainLayout pageTitle="Om os">
       <AboutSection />
     </MainLayout>
   );

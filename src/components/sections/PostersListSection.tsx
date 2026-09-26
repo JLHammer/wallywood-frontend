@@ -7,6 +7,7 @@ import { useGenres } from "../../hooks/useGenres";
 import { getSortOption } from "../../data/sortOptions";
 import { PostersLayout } from "../layout/PostersLayout";
 import { Loader } from "../ui/Loader";
+import { PageTitle } from "../ui/PageTitle";
 import { SortSelect } from "../ui/SortSelect";
 import { PostersListCard } from "../ui/poster/PostersListCard";
 import { Divider } from "../ui/Divider";
@@ -93,6 +94,7 @@ export const PostersListSection = () => {
 
   return (
     <PostersLayout headerAction={<SortSelect />}>
+      <PageTitle title={genre?.title ?? "Plakater"} />
       {renderPosters()}
     </PostersLayout>
   );

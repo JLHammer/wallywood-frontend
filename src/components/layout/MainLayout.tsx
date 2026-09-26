@@ -7,6 +7,7 @@ import { Footer } from "../partials/Footer";
 import { Logo } from "../ui/header/Logo";
 import { Cart } from "../ui/header/Cart";
 import { FavoritesLink } from "../ui/header/FavoritesLink";
+import { PageTitle } from "../ui/PageTitle";
 
 type MainLayoutProps = {
   children?: ReactNode;
@@ -27,9 +28,10 @@ const HeaderActions = styled.div`
   gap: ${theme.tablet.spacing.m};
 `;
 
-export const MainLayout = ({ children }: MainLayoutProps) => {
+export const MainLayout = ({ children, pageTitle }: MainLayoutProps) => {
   return (
     <>
+      {pageTitle && <PageTitle title={pageTitle} />}
       <Header>
         <Logo />
         <NavBar />

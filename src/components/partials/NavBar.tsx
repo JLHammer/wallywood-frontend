@@ -102,7 +102,7 @@ export const NavBar = () => {
             )}
             <li>
               <NavLinkStyled to={ROUTES.login} onClick={closeMenu}>
-                {user ? "Logout" : "Login"}
+                {user ? "Profil" : "Login"}
               </NavLinkStyled>
             </li>
           </NavBarList>

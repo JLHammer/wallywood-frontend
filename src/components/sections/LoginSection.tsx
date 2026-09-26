@@ -3,6 +3,7 @@ import { theme } from "../../styles/theme";
 import { LoginForm } from "../ui/form/LoginForm";
 import { Button } from "../ui/button/Button";
 import { useAuth } from "../../hooks/useAuth";
+import { PageTitle } from "../ui/PageTitle";
 
 const LoginSectionStyled = styled.section`
   ${theme.media.desktop} {
@@ -27,7 +28,8 @@ export const LoginSection = () => {
 
   return (
     <LoginSectionStyled>
-      <h1>Login</h1>
+      <PageTitle title={user ? "Profil" : "Login"} />
+      <h1>{user ? "Profil" : "Login"}</h1>
       {user ? (
         <>
           <LoggedInText>Du er logget ind som {user.firstName}.</LoggedInText>

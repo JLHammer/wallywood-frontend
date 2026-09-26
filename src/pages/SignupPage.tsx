@@ -3,7 +3,7 @@ import { SignupSection } from "../components/sections/SignupSection";
 
 export const SignupPage = () => {
   return (
-    <MainLayout>
+    <MainLayout pageTitle="Opret profil">
       <SignupSection />
     </MainLayout>
   );

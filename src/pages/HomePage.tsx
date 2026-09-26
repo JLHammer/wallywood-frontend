@@ -29,7 +29,7 @@ const ReelBackground = createGlobalStyle`
 
 export const HomePage = () => {
   return (
-    <MainLayout>
+    <MainLayout pageTitle="Forside">
       <ReelBackground />
       <HeroSection />
       <RandomPostersSection />
