@@ -9,6 +9,7 @@ export const ROUTES = {
   contact: "/contact",
   login: "/login",
   signup: "/signup",
+  changePassword: "/change-password",
   likedPosters: "/favorites",
   checkout: "/checkout",
 } as const;

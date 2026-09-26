@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import { LoginForm } from "../ui/form/LoginForm";
 import { Button } from "../ui/button/Button";
+import { ChangePasswordButton } from "../ui/button/ChangePasswordButton";
 import { useAuth } from "../../hooks/useAuth";
 import { PageTitle } from "../ui/PageTitle";
 
@@ -36,6 +37,7 @@ export const LoginSection = () => {
           <Button size="large" variant="alert" onClick={logout}>
             Log ud
           </Button>
+          <ChangePasswordButton />
         </>
       ) : (
         <LoginForm />
