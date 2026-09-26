@@ -52,10 +52,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   };
 
   const updateQuantity = (posterId: number, quantity: number) => {
-    if (quantity < 1) {
-      removeItem(posterId);
-      return;
-    }
+    if (quantity < 0) return;
 
     setItems((current) =>
       current.map((item) =>
