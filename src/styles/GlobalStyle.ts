@@ -1,27 +1,19 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { theme } from "./theme";
-import { preflight } from "./preflight";
 
-const globalStyles = css`
-  ${preflight}
+export const GlobalStyle = createGlobalStyle`
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+  }
 
   html {
     background-color: ${theme.colors.bordeaux};
     scroll-behavior: smooth;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-
-    *,
-    ::before,
-    ::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
@@ -34,9 +26,7 @@ const globalStyles = css`
     flex-direction: column;
     font-family: ${theme.fonts.body};
     font-size: ${theme.mobile.fontSizes.body};
-    font-weight: ${theme.fontWeights.regular};
     line-height: ${theme.mobile.lineHeights.body};
-    color: ${theme.colors.black};
 
     ${theme.media.desktop} {
       line-height: ${theme.desktop.lineHeights.body};
@@ -58,20 +48,10 @@ const globalStyles = css`
     padding: ${theme.mobile.spacing.m} ${theme.mobile.spacing.xxs} 0;
   }
 
-  form {
-    padding: 0 ${theme.mobile.spacing.l};
-
-    ${theme.media.tablet} {
-      padding: 0;
-    }
-  }
-
   h1,
   h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h3 {
+    margin: 0;
     text-wrap: balance;
     line-height: normal;
   }
@@ -79,7 +59,6 @@ const globalStyles = css`
   h1 {
     font-family: ${theme.fonts.heading};
     font-size: ${theme.mobile.fontSizes.h1};
-    font-weight: ${theme.fontWeights.bold};
     color: ${theme.colors.orange};
 
     ${theme.media.tablet} {
@@ -94,7 +73,6 @@ const globalStyles = css`
   h2 {
     font-family: ${theme.fonts.heading};
     font-size: ${theme.mobile.fontSizes.h2};
-    font-weight: ${theme.fontWeights.bold};
     color: ${theme.colors.orange};
 
     ${theme.media.tablet} {
@@ -107,10 +85,7 @@ const globalStyles = css`
   }
 
   h3 {
-    font-family: ${theme.fonts.body};
     font-size: ${theme.mobile.fontSizes.h3};
-    font-weight: ${theme.fontWeights.bold};
-    color: ${theme.colors.black};
 
     ${theme.media.tablet} {
       font-size: ${theme.tablet.fontSizes.h3};
@@ -122,6 +97,7 @@ const globalStyles = css`
   }
 
   p {
+    margin: 0;
     text-wrap: pretty;
   }
 
@@ -134,12 +110,74 @@ const globalStyles = css`
     }
   }
 
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  form {
+    padding: 0 ${theme.mobile.spacing.l};
+
+    ${theme.media.tablet} {
+      padding: 0;
+    }
+  }
+
+  fieldset {
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 100%;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+  }
+
+  button {
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
   input::placeholder,
   textarea::placeholder {
+    opacity: 1;
     color: ${theme.colors.placeholder};
   }
-`;
 
-export const GlobalStyle = createGlobalStyle`
-  ${globalStyles}
+  img,
+  svg {
+    display: block;
+  }
+
+  svg {
+    overflow: visible;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 `;
