@@ -56,7 +56,6 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
                 to={pageSearch(n)}
                 size="square"
                 isActive={n === page}
-                aria-current={n === page ? "page" : undefined}
               >
                 {n}
               </Button>
