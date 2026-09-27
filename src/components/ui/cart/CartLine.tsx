@@ -3,7 +3,7 @@ import { LuMinus, LuPlus, LuTrash2 } from "react-icons/lu";
 import styled from "styled-components";
 import { theme } from "../../../styles/theme";
 import { useCart } from "../../../hooks/useCart";
-import { posterPath } from "../../../data/routes";
+import { posterPath } from "../../../router/routes";
 import { formatPrice } from "../../../utils/text";
 import type { CartItem } from "../../../types";
 import { Button } from "../button/Button";

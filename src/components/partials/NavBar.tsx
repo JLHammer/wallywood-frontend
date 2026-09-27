@@ -3,7 +3,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
 import { NavLink } from "react-router-dom";
-import { NAV_LINKS, ROUTES } from "../../data/routes";
+import { NAV_LINKS, ROUTES } from "../../router/routes";
 import { BurgerMenu } from "../ui/header/BurgerMenu";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { useAuth } from "../../hooks/useAuth";

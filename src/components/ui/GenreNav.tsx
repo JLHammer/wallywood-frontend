@@ -2,7 +2,7 @@ import type { ChangeEvent } from "react";
 import styled from "styled-components";
 import { Link, NavLink, useNavigate, useParams } from "react-router-dom";
 import { useGenres } from "../../hooks/useGenres";
-import { ROUTES, genrePath } from "../../data/routes";
+import { ROUTES, genrePath } from "../../router/routes";
 import { theme } from "../../styles/theme";
 import { Select } from "./form/Select";
 import { SelectField } from "./form/SelectField";

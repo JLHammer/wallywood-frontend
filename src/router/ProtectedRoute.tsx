@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { ROUTES } from "../data/routes";
+import { ROUTES } from "./routes";
 import { MainLayout } from "../components/layout/MainLayout";
 import { Loader } from "../components/ui/Loader";
 

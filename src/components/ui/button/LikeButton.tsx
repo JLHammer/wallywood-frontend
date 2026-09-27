@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { theme } from "../../../styles/theme";
 import { useAuth } from "../../../hooks/useAuth";
 import { useLikes } from "../../../hooks/useLikes";
-import { ROUTES } from "../../../data/routes";
+import { ROUTES } from "../../../router/routes";
 import { Button } from "./Button";
 import type { ButtonSize } from "./buttonStyles";
 

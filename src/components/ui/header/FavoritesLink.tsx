@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import styled from "styled-components";
 import { theme } from "../../../styles/theme";
-import { ROUTES } from "../../../data/routes";
+import { ROUTES } from "../../../router/routes";
 import { useAuth } from "../../../hooks/useAuth";
 
 const FavoritesLinkStyled = styled(NavLink)`

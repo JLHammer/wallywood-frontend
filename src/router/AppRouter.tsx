@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { ROUTES } from "../data/routes";
+import { ROUTES } from "./routes";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { HomePage } from "../pages/HomePage";
 import { PostersListPage } from "../pages/PostersListPage";

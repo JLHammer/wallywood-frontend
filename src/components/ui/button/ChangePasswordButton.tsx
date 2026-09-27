@@ -1,5 +1,5 @@
 import { Button } from "./Button";
-import { ROUTES } from "../../../data/routes";
+import { ROUTES } from "../../../router/routes";
 
 export const ChangePasswordButton = () => {
   return (

@@ -8,7 +8,7 @@ import { PosterFrame } from "./PosterFrame";
 import { PosterImage } from "./PosterImage";
 import { ReadMoreButton } from "../button/ReadMoreButton";
 import { LikeButton } from "../button/LikeButton";
-import { posterPath } from "../../../data/routes";
+import { posterPath } from "../../../router/routes";
 
 const RandomPosterCardStyled = styled.article`
   display: flex;

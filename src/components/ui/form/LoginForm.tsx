@@ -8,7 +8,7 @@ import {
   loginSchema,
   type LoginFormValues,
 } from "../../../schemas/loginSchema";
-import { ROUTES } from "../../../data/routes";
+import { ROUTES } from "../../../router/routes";
 import { useAuth } from "../../../hooks/useAuth";
 import { useLikes } from "../../../hooks/useLikes";
 import { FormField } from "./FormField";

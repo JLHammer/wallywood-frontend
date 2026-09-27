@@ -6,7 +6,7 @@ import { PosterFrame } from "./PosterFrame";
 import { PosterImage } from "./PosterImage";
 import { PutInCartButton } from "../button/PutInCartButton";
 import { LikeButton } from "../button/LikeButton";
-import { posterPath } from "../../../data/routes";
+import { posterPath } from "../../../router/routes";
 import { formatPrice } from "../../../utils/text";
 
 const PostersListCardStyled = styled.article`

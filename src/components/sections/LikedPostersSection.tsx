@@ -1,7 +1,7 @@
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
 import { useLikedPosters } from "../../hooks/useLikedPosters";
-import { ROUTES } from "../../data/routes";
+import { ROUTES } from "../../router/routes";
 import { Loader } from "../ui/Loader";
 import { Button } from "../ui/button/Button";
 import { LikedPostersCard } from "../ui/poster/LikedPostersCard";

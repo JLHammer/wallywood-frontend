@@ -8,7 +8,7 @@ import {
   type SignupFormValues,
 } from "../../../schemas/signupSchema";
 import { useSignup } from "../../../hooks/useSignup";
-import { ROUTES } from "../../../data/routes";
+import { ROUTES } from "../../../router/routes";
 import { FormField } from "./FormField";
 import { FormButtonGroup } from "./FormButtonGroup";
 import { Button } from "../button/Button";

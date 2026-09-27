@@ -8,7 +8,7 @@ import { CloseButton } from "./CloseButton";
 import { CartLine } from "./CartLine";
 import { useCart } from "../../../hooks/useCart";
 import { useAuth } from "../../../hooks/useAuth";
-import { ROUTES } from "../../../data/routes";
+import { ROUTES } from "../../../router/routes";
 import { formatPrice } from "../../../utils/text";
 
 const Backdrop = styled(motion.div)`
