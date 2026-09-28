@@ -24,8 +24,10 @@ export const NAV_LINKS = [
   { path: contact, label: "Kontakt os" },
 ] as const;
 
+// genrePath("adventure") --> "/posters/genre/adventure"
 export const genrePath = (genreSlug: string) =>
   generatePath(ROUTES.postersByGenre, { genreSlug });
 
+// posterPath("ringenes-herre-de-to-taarne") --> "/posters/ringenes-herre-de-to-taarne"
 export const posterPath = (posterSlug: string) =>
   generatePath(ROUTES.postersDetails, { posterSlug });

@@ -3,8 +3,11 @@ import { API_URL, authHeaders } from "../utils/api";
 import { useAuth } from "./useAuth";
 import type { ChangePasswordFormValues } from "../schemas/changePasswordSchema";
 
+// confirmPassword is only checked in the form; the API does not take it.
 type PasswordChange = Omit<ChangePasswordFormValues, "confirmPassword">;
 
+// Changes the logged-in user's password. Works like useSignup: returns true
+// on success, otherwise `error` holds a message ready to show.
 export const useChangePassword = () => {
   const { user, token } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +34,7 @@ export const useChangePassword = () => {
       }
 
       setError(
+        // The API answers 401 when the current password is wrong.
         response.status === 401
           ? "Din nuværende adgangskode er forkert."
           : "Adgangskoden kunne ikke skiftes. Prøv igen senere.",

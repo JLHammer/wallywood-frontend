@@ -23,6 +23,7 @@ const reelBackground = css`
   }
 `;
 
+// Global style so it can reach <body>; applies only while HomePage is mounted
 const ReelBackground = createGlobalStyle`
   ${reelBackground}
 `;

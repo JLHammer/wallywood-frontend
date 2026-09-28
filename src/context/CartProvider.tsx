@@ -4,6 +4,7 @@ import type { CartItem, Poster } from "../types";
 
 const CART_KEY = "wallywood_cart";
 
+// Reads the saved cart; falls back to empty if nothing is saved or the data is invalid.
 const loadCart = (): CartItem[] => {
   try {
     return JSON.parse(localStorage.getItem(CART_KEY) ?? "[]");
@@ -16,20 +17,25 @@ interface CartProviderProps {
   children: ReactNode;
 }
 
+// Client-side cart, kept in state and saved to localStorage.
 export const CartProvider = ({ children }: CartProviderProps) => {
+  // Passing loadCart (not loadCart()) makes React call it only on the first render.
   const [items, setItems] = useState<CartItem[]>(loadCart);
   const [isOpen, setIsOpen] = useState(false);
 
+  // Saves the cart on every change, so it survives a reload.
   useEffect(() => {
     localStorage.setItem(CART_KEY, JSON.stringify(items));
   }, [items]);
 
+  // Derived from items on each render, so they are never out of sync.
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
   const total = items.reduce(
     (sum, item) => sum + Number(item.price) * item.quantity,
     0,
   );
 
+  // Adds one of the poster: bumps the quantity if it is already in the cart.
   const addItem = (poster: Poster) => {
     setItems((current) => {
       const isInCart = current.some((item) => item.id === poster.id);
@@ -42,6 +48,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         );
       }
 
+      // Stores only the fields the cart needs.
       const { id, name, slug, imageUrl, price } = poster;
       return [...current, { id, name, slug, imageUrl, price, quantity: 1 }];
     });

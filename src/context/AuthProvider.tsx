@@ -3,12 +3,15 @@ import { AuthContext } from "./AuthContext";
 import { API_URL } from "../utils/api";
 import type { AuthResponse, User } from "../types";
 
+// Renews the access token before it expires.
 const REFRESH_INTERVAL_MS = 15 * 60 * 1000;
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
+// Holds the logged-in user and access token in memory only.
+// The refresh token is an HTTP-only cookie the browser sends with credentials: "include".
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
@@ -25,6 +28,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     setToken(null);
   };
 
+  // Trades the refresh cookie for a new access token.
   const refresh = async () => {
     try {
       const response = await fetch(`${API_URL}/api/refresh`, {
@@ -32,6 +36,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         credentials: "include",
       });
 
+      // 204 means no refresh cookie, i.e. a guest.
       if (response.ok && response.status !== 204) {
         saveLogin(await response.json());
       } else {
@@ -42,6 +47,10 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  // On start: restore a login from the cookie, then stop loading.
+  // StrictMode runs this effect twice in development. Wrapping the call in a
+  // setTimeout lets the cleanup cancel the first run, so only one refresh
+  // request is sent.
   useEffect(() => {
     const timeout = setTimeout(async () => {
       await refresh();
@@ -50,6 +59,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     return () => clearTimeout(timeout);
   }, []);
 
+  // While logged in: refresh the token on an interval.
   useEffect(() => {
     if (!isLoggedIn) return;
 
@@ -75,6 +85,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
+  // Logs out locally first, so the UI updates even if the request fails.
   const logout = async () => {
     clearLogin();
 

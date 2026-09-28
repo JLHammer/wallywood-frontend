@@ -8,15 +8,20 @@ interface LikesProviderProps {
   children: ReactNode;
 }
 
+// Keeps the logged-in user's liked poster ids. Must sit inside AuthProvider.
 export const LikesProvider = ({ children }: LikesProviderProps) => {
   const { token } = useAuth();
   const [likedPosterIds, setLikedPosterIds] = useState<number[]>([]);
+  // A ref, not state: changing it should not re-render anything.
   const pendingLikeRef = useRef<number | null>(null);
 
   const likeAfterLogin = (posterId: number | null) => {
     pendingLikeRef.current = posterId;
   };
 
+  // Runs on login (when a token appears).
+  // Fetches with plain fetch instead of useFetch, because a like the guest
+  // clicked before logging in must be saved before the list is loaded.
   useEffect(() => {
     if (!token) return;
 
@@ -45,9 +50,11 @@ export const LikesProvider = ({ children }: LikesProviderProps) => {
     fetchLikes();
   }, [token]);
 
+  // Checks the token too, so hearts clear right away on logout.
   const isLiked = (posterId: number) =>
     token !== null && likedPosterIds.includes(posterId);
 
+  // DELETE if liked, POST if not; local state updates only when the API succeeds.
   const toggleLike = async (posterId: number) => {
     const liked = isLiked(posterId);
 
