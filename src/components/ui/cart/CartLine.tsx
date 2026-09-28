@@ -75,7 +75,7 @@ const Quantity = styled.span`
   text-align: center;
 
   ${theme.media.tablet} {
-    min-width: ${theme.tablet.sizes.formButtonHeight};
+    min-width: ${theme.tablet.sizes.likeButtonWidth};
   }
 
   ${theme.media.desktop} {

@@ -42,8 +42,8 @@ const sizeStyles = {
     flex-shrink: 0;
 
     ${theme.media.tablet} {
-      width: ${theme.tablet.sizes.formButtonHeight};
-      height: ${theme.tablet.sizes.formButtonHeight};
+      width: ${theme.tablet.sizes.likeButtonWidth};
+      height: ${theme.tablet.sizes.likeButtonHeight};
       font-size: ${theme.tablet.fontSizes.formText};
     }
 
