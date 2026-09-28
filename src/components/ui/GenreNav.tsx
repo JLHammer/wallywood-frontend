@@ -12,25 +12,27 @@ const GenreNavStyled = styled.nav`
   flex-direction: column;
   gap: ${theme.mobile.spacing.xxs};
 
-  h2 {
-    text-align: center;
-    color: ${theme.colors.black};
-  }
-
   ${theme.media.desktop} {
     display: block;
     font-size: ${theme.desktop.fontSizes.content};
+  }
+`;
 
-    h2 {
-      text-align: left;
-      font-family: ${theme.fonts.body};
-      font-size: ${theme.desktop.fontSizes.contentTitle};
-    }
+const FiltersHeading = styled.h2`
+  text-align: center;
+  color: ${theme.colors.black};
 
-    h3 {
-      margin-top: ${theme.desktop.spacing.xs};
-      font-size: ${theme.desktop.fontSizes.content};
-    }
+  ${theme.media.desktop} {
+    text-align: left;
+    font-family: ${theme.fonts.body};
+    font-size: ${theme.desktop.fontSizes.contentTitle};
+  }
+`;
+
+const GenreHeading = styled.h3`
+  ${theme.media.desktop} {
+    margin-top: ${theme.desktop.spacing.xs};
+    font-size: ${theme.desktop.fontSizes.content};
   }
 `;
 
@@ -75,7 +77,7 @@ export const GenreNav = () => {
 
   return (
     <GenreNavStyled>
-      <h2>Filtre</h2>
+      <FiltersHeading>Filtre</FiltersHeading>
 
       <GenreSelectField>
         <Select value={genreSlug} onChange={handleGenreChange}>
@@ -89,7 +91,7 @@ export const GenreNav = () => {
       </GenreSelectField>
 
       <GenreList>
-        <h3>Genre</h3>
+        <GenreHeading>Genre</GenreHeading>
         <ul>
           {genres.map((genre) => (
             <li key={genre.id}>

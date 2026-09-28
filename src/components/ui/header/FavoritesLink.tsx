@@ -9,11 +9,6 @@ const FavoritesLinkStyled = styled(NavLink)`
   display: none;
   transition: color 0.2s ease;
 
-  svg {
-    width: ${theme.tablet.sizes.headerIconSize};
-    height: ${theme.tablet.sizes.headerIconSize};
-  }
-
   &:hover {
     color: ${theme.colors.orange};
   }
@@ -27,6 +22,11 @@ const FavoritesLinkStyled = styled(NavLink)`
   }
 `;
 
+const HeartIcon = styled(FaHeart)`
+  width: ${theme.tablet.sizes.headerIconSize};
+  height: ${theme.tablet.sizes.headerIconSize};
+`;
+
 export const FavoritesLink = () => {
   const { user } = useAuth();
 
@@ -34,7 +34,7 @@ export const FavoritesLink = () => {
 
   return (
     <FavoritesLinkStyled to={ROUTES.likedPosters} title="Favoritter">
-      <FaHeart />
+      <HeartIcon />
     </FavoritesLinkStyled>
   );
 };

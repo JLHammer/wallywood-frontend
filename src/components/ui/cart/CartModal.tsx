@@ -49,25 +49,6 @@ const CartHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  svg {
-    width: ${theme.mobile.sizes.closeIconSize};
-    height: ${theme.mobile.sizes.closeIconSize};
-  }
-
-  ${theme.media.tablet} {
-    svg {
-      width: ${theme.tablet.sizes.closeIconSize};
-      height: ${theme.tablet.sizes.closeIconSize};
-    }
-  }
-
-  ${theme.media.desktop} {
-    svg {
-      width: ${theme.desktop.sizes.closeIconSize};
-      height: ${theme.desktop.sizes.closeIconSize};
-    }
-  }
 `;
 
 const CartList = styled.ul`

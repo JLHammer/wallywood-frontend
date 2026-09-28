@@ -6,8 +6,6 @@ import { Loader } from "../ui/Loader";
 import { Button } from "../ui/button/Button";
 import { LikedPostersCard } from "../ui/poster/LikedPostersCard";
 
-const LikedPostersSectionStyled = styled.section``;
-
 const LikedPostersList = styled.ul`
   width: 100%;
   display: grid;
@@ -16,8 +14,17 @@ const LikedPostersList = styled.ul`
 
   ${theme.media.tablet} {
     grid-template-columns: repeat(2, 1fr);
+  }
 
-    li:only-child {
+  ${theme.media.desktop} {
+    grid-template-columns: repeat(3, ${theme.desktop.sizes.listCardWidth});
+    column-gap: ${theme.desktop.spacing.xxl};
+  }
+`;
+
+const LikedPostersItem = styled.li`
+  ${theme.media.tablet} {
+    &:only-child {
       grid-column: 1 / -1;
       justify-self: center;
       width: calc((100% - ${theme.mobile.spacing.xl}) / 2);
@@ -25,10 +32,7 @@ const LikedPostersList = styled.ul`
   }
 
   ${theme.media.desktop} {
-    grid-template-columns: repeat(3, ${theme.desktop.sizes.listCardWidth});
-    column-gap: ${theme.desktop.spacing.xxl};
-
-    li:only-child {
+    &:only-child {
       grid-column: auto;
       justify-self: stretch;
       width: auto;
@@ -55,18 +59,18 @@ export const LikedPostersSection = () => {
     return (
       <LikedPostersList>
         {posters.map((poster) => (
-          <li key={poster.id}>
+          <LikedPostersItem key={poster.id}>
             <LikedPostersCard poster={poster} />
-          </li>
+          </LikedPostersItem>
         ))}
       </LikedPostersList>
     );
   };
 
   return (
-    <LikedPostersSectionStyled>
+    <section>
       <h1>Favoritter</h1>
       {renderPosters()}
-    </LikedPostersSectionStyled>
+    </section>
   );
 };

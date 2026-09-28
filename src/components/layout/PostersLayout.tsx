@@ -32,17 +32,17 @@ const PostersLayoutStyled = styled.section`
 const PageHeader = styled.div`
   display: contents;
 
-  h1 {
-    grid-column: 1 / -1;
-    justify-self: center;
-  }
-
   ${theme.media.desktop} {
     display: flex;
     grid-column: 1 / -1;
     justify-content: space-between;
     align-items: center;
   }
+`;
+
+const PostersHeading = styled.h1`
+  grid-column: 1 / -1;
+  justify-self: center;
 `;
 
 const filterGroupStyles = css`
@@ -115,7 +115,7 @@ export const PostersLayout = () => {
   return (
     <PostersLayoutStyled>
       <PageHeader>
-        <h1>Plakater</h1>
+        <PostersHeading>Plakater</PostersHeading>
         {!isDetailsPage && (
           <HeaderAction>
             <SortSelect />

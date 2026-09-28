@@ -14,12 +14,23 @@ const CloseButtonStyled = styled.button`
   }
 `;
 
-type CloseButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  size?: number;
-};
+const CloseIcon = styled(LuX)`
+  width: ${theme.mobile.sizes.closeIconSize};
+  height: ${theme.mobile.sizes.closeIconSize};
 
-export const CloseButton = ({ size = 28, ...props }: CloseButtonProps) => (
+  ${theme.media.tablet} {
+    width: ${theme.tablet.sizes.closeIconSize};
+    height: ${theme.tablet.sizes.closeIconSize};
+  }
+
+  ${theme.media.desktop} {
+    width: ${theme.desktop.sizes.closeIconSize};
+    height: ${theme.desktop.sizes.closeIconSize};
+  }
+`;
+
+export const CloseButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
   <CloseButtonStyled type="button" title="Luk" {...props}>
-    <LuX size={size} />
+    <CloseIcon />
   </CloseButtonStyled>
 );
