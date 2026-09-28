@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API_URL } from "../utils/api";
+import { API_URL, authHeaders } from "../utils/api";
 import { useAuth } from "./useAuth";
 import type { ChangePasswordFormValues } from "../schemas/changePasswordSchema";
 
@@ -22,10 +22,7 @@ export const useChangePassword = () => {
     try {
       const response = await fetch(`${API_URL}/users/${user.id}/password`, {
         method: "PATCH",
-        headers: {
-          "Content-type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+        headers: authHeaders(token),
         body: JSON.stringify(passwords),
       });
 

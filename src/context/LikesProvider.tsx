@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { LikesContext } from "./LikesContext";
 import { useAuth } from "../hooks/useAuth";
-import { API_URL } from "../utils/api";
+import { API_URL, authHeaders } from "../utils/api";
 import type { LikesResponse } from "../types";
 
 interface LikesProviderProps {
@@ -27,10 +27,7 @@ export const LikesProvider = ({ children }: LikesProviderProps) => {
           pendingLikeRef.current = null;
           await fetch(`${API_URL}/likes`, {
             method: "POST",
-            headers: {
-              "Content-type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
+            headers: authHeaders(token),
             body: JSON.stringify({ posterId: pendingPosterId }),
           });
         }
@@ -59,10 +56,7 @@ export const LikesProvider = ({ children }: LikesProviderProps) => {
         liked ? `${API_URL}/likes/${posterId}` : `${API_URL}/likes`,
         {
           method: liked ? "DELETE" : "POST",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+          headers: authHeaders(token),
           ...(!liked && { body: JSON.stringify({ posterId }) }),
         },
       );
