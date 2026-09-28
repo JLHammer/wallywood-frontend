@@ -13,6 +13,7 @@ import { SignupPage } from "../pages/SignupPage";
 import { ChangePasswordPage } from "../pages/ChangePasswordPage";
 import { LikedPostersPage } from "../pages/LikedPostersPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
+import { NotFoundPage } from "../pages/NotFoundPage";
 
 const {
   home,
@@ -26,6 +27,7 @@ const {
   changePassword,
   likedPosters,
   checkout,
+  notFound,
 } = ROUTES;
 
 export const AppRouter = () => {
@@ -47,6 +49,7 @@ export const AppRouter = () => {
           <Route path={likedPosters} element={<LikedPostersPage />} />
         </Route>
         <Route path={checkout} element={<CheckoutPage />} />
+        <Route path={notFound} element={<NotFoundPage />} />
       </Route>
     </Routes>
   );

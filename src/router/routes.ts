@@ -12,6 +12,7 @@ export const ROUTES = {
   changePassword: "/change-password",
   likedPosters: "/favorites",
   checkout: "/checkout",
+  notFound: "*",
 } as const;
 
 const { home, posters, about, contact } = ROUTES;
