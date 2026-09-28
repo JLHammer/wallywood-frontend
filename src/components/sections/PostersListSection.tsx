@@ -58,6 +58,8 @@ export const PostersListSection = () => {
   });
   const { genres } = useGenres();
   const genre = genres.find((g) => g.slug === genreSlug);
+  const isUnknownGenre =
+    genreSlug !== undefined && genres.length > 0 && !genre;
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -66,6 +68,7 @@ export const PostersListSection = () => {
   const renderPosters = () => {
     if (isLoading) return <Loader />;
     if (error) return <p>Kunne ikke hente plakater</p>;
+    if (isUnknownGenre) return <p>Genren findes ikke</p>;
     if (posters.length === 0) return <p>Ingen plakater i denne genre</p>;
 
     return (
@@ -94,7 +97,11 @@ export const PostersListSection = () => {
 
   return (
     <PostersLayout headerAction={<SortSelect />}>
-      <PageTitle title={genre?.title ?? "Plakater"} />
+      <PageTitle
+        title={
+          isUnknownGenre ? "Genren findes ikke" : (genre?.title ?? "Plakater")
+        }
+      />
       {renderPosters()}
     </PostersLayout>
   );
