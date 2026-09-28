@@ -1,10 +1,11 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { AboutSection } from "../components/sections/AboutSection";
+import { PageTitle } from "../components/ui/PageTitle";
 
 export const AboutPage = () => {
   return (
-    <MainLayout pageTitle="Om os">
+    <>
+      <PageTitle title="Om os" />
       <AboutSection />
-    </MainLayout>
+    </>
   );
 };

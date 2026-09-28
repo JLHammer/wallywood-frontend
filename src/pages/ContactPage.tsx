@@ -1,10 +1,11 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { ContactSection } from "../components/sections/ContactSection";
+import { PageTitle } from "../components/ui/PageTitle";
 
 export const ContactPage = () => {
   return (
-    <MainLayout pageTitle="Kontakt os">
+    <>
+      <PageTitle title="Kontakt os" />
       <ContactSection />
-    </MainLayout>
+    </>
   );
 };

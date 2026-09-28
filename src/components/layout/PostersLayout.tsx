@@ -1,7 +1,9 @@
-import type { ReactNode } from "react";
+import { Outlet, useMatch } from "react-router-dom";
 import styled, { css } from "styled-components";
 import { theme } from "../../styles/theme";
+import { ROUTES } from "../../router/routes";
 import { GenreNav } from "../ui/GenreNav";
+import { SortSelect } from "../ui/SortSelect";
 
 const PostersLayoutStyled = styled.section`
   display: grid;
@@ -107,27 +109,25 @@ const Content = styled.div`
   }
 `;
 
-interface PostersLayoutProps {
-  headerAction?: ReactNode;
-  hideFiltersBelowDesktop?: boolean;
-  children: ReactNode;
-}
+export const PostersLayout = () => {
+  const isDetailsPage = useMatch(ROUTES.postersDetails) !== null;
 
-export const PostersLayout = ({
-  headerAction,
-  hideFiltersBelowDesktop = false,
-  children,
-}: PostersLayoutProps) => {
   return (
     <PostersLayoutStyled>
       <PageHeader>
         <h1>Plakater</h1>
-        {headerAction && <HeaderAction>{headerAction}</HeaderAction>}
+        {!isDetailsPage && (
+          <HeaderAction>
+            <SortSelect />
+          </HeaderAction>
+        )}
       </PageHeader>
-      <Sidebar $hideBelowDesktop={hideFiltersBelowDesktop}>
+      <Sidebar $hideBelowDesktop={isDetailsPage}>
         <GenreNav />
       </Sidebar>
-      <Content>{children}</Content>
+      <Content>
+        <Outlet />
+      </Content>
     </PostersLayoutStyled>
   );
 };

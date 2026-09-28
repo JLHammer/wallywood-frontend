@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
-
-type HeaderProps = {
-  children?: ReactNode;
-};
+import { NavBar } from "./NavBar";
+import { Logo } from "../ui/header/Logo";
+import { Cart } from "../ui/header/Cart";
+import { FavoritesLink } from "../ui/header/FavoritesLink";
 
 const HeaderStyled = styled.header`
   position: sticky;
@@ -24,6 +23,21 @@ const HeaderStyled = styled.header`
   }
 `;
 
-export const Header = ({ children }: HeaderProps) => {
-  return <HeaderStyled>{children}</HeaderStyled>;
+const HeaderActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${theme.tablet.spacing.m};
+`;
+
+export const Header = () => {
+  return (
+    <HeaderStyled>
+      <Logo />
+      <NavBar />
+      <HeaderActions>
+        <FavoritesLink />
+        <Cart />
+      </HeaderActions>
+    </HeaderStyled>
+  );
 };

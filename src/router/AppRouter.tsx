@@ -1,6 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { MainLayout } from "../components/layout/MainLayout";
+import { PostersLayout } from "../components/layout/PostersLayout";
 import { HomePage } from "../pages/HomePage";
 import { PostersListPage } from "../pages/PostersListPage";
 import { PostersDetailsPage } from "../pages/PostersDetailsPage";
@@ -29,19 +31,23 @@ const {
 export const AppRouter = () => {
   return (
     <Routes>
-      <Route path={home} element={<HomePage />} />
-      <Route path={posters} element={<PostersListPage />} />
-      <Route path={postersByGenre} element={<PostersListPage />} />
-      <Route path={postersDetails} element={<PostersDetailsPage />} />
-      <Route path={about} element={<AboutPage />} />
-      <Route path={contact} element={<ContactPage />} />
-      <Route path={login} element={<LoginPage />} />
-      <Route path={signup} element={<SignupPage />} />
-      <Route element={<ProtectedRoute />}>
-        <Route path={changePassword} element={<ChangePasswordPage />} />
-        <Route path={likedPosters} element={<LikedPostersPage />} />
+      <Route element={<MainLayout />}>
+        <Route path={home} element={<HomePage />} />
+        <Route element={<PostersLayout />}>
+          <Route path={posters} element={<PostersListPage />} />
+          <Route path={postersByGenre} element={<PostersListPage />} />
+          <Route path={postersDetails} element={<PostersDetailsPage />} />
+        </Route>
+        <Route path={about} element={<AboutPage />} />
+        <Route path={contact} element={<ContactPage />} />
+        <Route path={login} element={<LoginPage />} />
+        <Route path={signup} element={<SignupPage />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path={changePassword} element={<ChangePasswordPage />} />
+          <Route path={likedPosters} element={<LikedPostersPage />} />
+        </Route>
+        <Route path={checkout} element={<CheckoutPage />} />
       </Route>
-      <Route path={checkout} element={<CheckoutPage />} />
     </Routes>
   );
 };

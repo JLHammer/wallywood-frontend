@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { usePoster } from "../../hooks/usePoster";
-import { PostersLayout } from "../layout/PostersLayout";
 import { Loader } from "../ui/Loader";
 import { PageTitle } from "../ui/PageTitle";
 import { PostersDetailsCard } from "../ui/poster/PostersDetailsCard";
@@ -17,9 +16,9 @@ export const PostersDetailsSection = () => {
   };
 
   return (
-    <PostersLayout hideFiltersBelowDesktop>
+    <>
       <PageTitle title={poster?.name ?? "Plakater"} />
       {renderContent()}
-    </PostersLayout>
+    </>
   );
 };

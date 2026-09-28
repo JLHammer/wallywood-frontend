@@ -1,6 +1,6 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { HeroSection } from "../components/sections/HeroSection";
 import { RandomPostersSection } from "../components/sections/RandomPostersSection";
+import { PageTitle } from "../components/ui/PageTitle";
 import { createGlobalStyle, css } from "styled-components";
 import reel from "../assets/images/reel.jpg";
 import { theme } from "../styles/theme";
@@ -29,10 +29,11 @@ const ReelBackground = createGlobalStyle`
 
 export const HomePage = () => {
   return (
-    <MainLayout pageTitle="Forside">
+    <>
+      <PageTitle title="Forside" />
       <ReelBackground />
       <HeroSection />
       <RandomPostersSection />
-    </MainLayout>
+    </>
   );
 };

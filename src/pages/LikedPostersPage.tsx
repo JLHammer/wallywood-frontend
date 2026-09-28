@@ -1,10 +1,11 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { LikedPostersSection } from "../components/sections/LikedPostersSection";
+import { PageTitle } from "../components/ui/PageTitle";
 
 export const LikedPostersPage = () => {
   return (
-    <MainLayout pageTitle="Favoritter">
+    <>
+      <PageTitle title="Favoritter" />
       <LikedPostersSection />
-    </MainLayout>
+    </>
   );
 };

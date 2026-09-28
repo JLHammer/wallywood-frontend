@@ -1,10 +1,11 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { SignupSection } from "../components/sections/SignupSection";
+import { PageTitle } from "../components/ui/PageTitle";
 
 export const SignupPage = () => {
   return (
-    <MainLayout pageTitle="Opret profil">
+    <>
+      <PageTitle title="Opret profil" />
       <SignupSection />
-    </MainLayout>
+    </>
   );
 };

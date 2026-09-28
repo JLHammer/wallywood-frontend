@@ -1,10 +1,11 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { CheckoutSection } from "../components/sections/CheckoutSection";
+import { PageTitle } from "../components/ui/PageTitle";
 
 export const CheckoutPage = () => {
   return (
-    <MainLayout pageTitle="Checkout">
+    <>
+      <PageTitle title="Checkout" />
       <CheckoutSection />
-    </MainLayout>
+    </>
   );
 };

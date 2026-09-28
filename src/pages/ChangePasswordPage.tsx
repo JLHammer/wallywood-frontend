@@ -1,10 +1,11 @@
-import { MainLayout } from "../components/layout/MainLayout";
 import { ChangePasswordSection } from "../components/sections/ChangePasswordSection";
+import { PageTitle } from "../components/ui/PageTitle";
 
 export const ChangePasswordPage = () => {
   return (
-    <MainLayout pageTitle="Skift kodeord">
+    <>
+      <PageTitle title="Skift kodeord" />
       <ChangePasswordSection />
-    </MainLayout>
+    </>
   );
 };
