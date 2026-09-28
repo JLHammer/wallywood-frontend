@@ -6,7 +6,7 @@ interface PosterImageProps {
   alt: string;
 }
 
-const Image = styled.img<{ $isLoaded: boolean }>`
+const PosterImageStyled = styled.img<{ $isLoaded: boolean }>`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -18,7 +18,7 @@ export const PosterImage = ({ src, alt }: PosterImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
-    <Image
+    <PosterImageStyled
       src={src}
       alt={alt}
       $isLoaded={isLoaded}

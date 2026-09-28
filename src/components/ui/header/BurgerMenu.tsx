@@ -129,7 +129,7 @@ const MenuIcon = forwardRef<MenuIconHandle, MenuIconProps>(
 
 MenuIcon.displayName = "MenuIcon";
 
-const BurgerButton = styled.button`
+const BurgerMenuStyled = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,8 +165,8 @@ export const BurgerMenu = ({
   }, [isOpen]);
 
   return (
-    <BurgerButton type="button" {...props}>
+    <BurgerMenuStyled type="button" {...props}>
       <MenuIcon ref={iconRef} size={size} />
-    </BurgerButton>
+    </BurgerMenuStyled>
   );
 };

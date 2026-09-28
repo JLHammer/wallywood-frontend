@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import curtain from "../../assets/images/curtain.jpg";
 
-const HeroImageContainer = styled.div`
+const HeroImageStyled = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-const HeroImageStyled = styled.img`
+const HeroImg = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -15,8 +15,8 @@ const HeroImageStyled = styled.img`
 
 export const HeroImage = () => {
   return (
-    <HeroImageContainer>
-      <HeroImageStyled src={curtain} alt="Curtain Hero" />
-    </HeroImageContainer>
+    <HeroImageStyled>
+      <HeroImg src={curtain} alt="Curtain Hero" />
+    </HeroImageStyled>
   );
 };

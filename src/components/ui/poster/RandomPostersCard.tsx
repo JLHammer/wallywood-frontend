@@ -10,7 +10,7 @@ import { ReadMoreButton } from "../button/ReadMoreButton";
 import { LikeButton } from "../button/LikeButton";
 import { posterPath } from "../../../router/routes";
 
-const RandomPosterCardStyled = styled.article`
+const RandomPostersCardStyled = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,7 +124,7 @@ export const RandomPostersCard = ({ poster }: RandomPostersCardProps) => {
   );
 
   return (
-    <RandomPosterCardStyled>
+    <RandomPostersCardStyled>
       <ImageLink to={posterPath(poster.slug)}>
         <PosterFrame>
           <PosterImage src={poster.imageUrl} alt={poster.name} />
@@ -148,6 +148,6 @@ export const RandomPostersCard = ({ poster }: RandomPostersCardProps) => {
           <LikeButton posterId={poster.id} size="iconLarge" />
         </ButtonGroup>
       </CardContent>
-    </RandomPosterCardStyled>
+    </RandomPostersCardStyled>
   );
 };

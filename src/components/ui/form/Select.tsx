@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { LuChevronDown } from "react-icons/lu";
 import { theme } from "../../../styles/theme";
 
-const SelectWrapper = styled.span`
+const SelectStyled = styled.span`
   position: relative;
   width: 100%;
   max-width: ${theme.mobile.sizes.selectWidth};
@@ -37,12 +37,12 @@ const SelectChevron = styled(LuChevronDown)`
     height: ${theme.desktop.sizes.selectChevronSize};
   }
 
-  ${SelectWrapper}:hover & {
+  ${SelectStyled}:hover & {
     color: ${theme.colors.orange};
   }
 `;
 
-const SelectStyled = styled.select`
+const NativeSelect = styled.select`
   appearance: none;
   width: 100%;
   height: ${theme.mobile.sizes.selectHeight};
@@ -83,11 +83,11 @@ interface SelectProps {
 
 export const Select = ({ value, onChange, children }: SelectProps) => {
   return (
-    <SelectWrapper>
-      <SelectStyled value={value} onChange={onChange}>
+    <SelectStyled>
+      <NativeSelect value={value} onChange={onChange}>
         {children}
-      </SelectStyled>
+      </NativeSelect>
       <SelectChevron />
-    </SelectWrapper>
+    </SelectStyled>
   );
 };

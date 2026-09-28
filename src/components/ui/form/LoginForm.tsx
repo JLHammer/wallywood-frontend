@@ -15,7 +15,7 @@ import { FormField } from "./FormField";
 import { FormButtonGroup } from "./FormButtonGroup";
 import { Button } from "../button/Button";
 
-const LoginFormWrapper = styled.div`
+const LoginFormStyled = styled.div`
   width: ${theme.mobile.sizes.inputWidth};
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ const LoginFormWrapper = styled.div`
   }
 `;
 
-const LoginFormStyled = styled.form`
+const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: ${theme.mobile.spacing.l};
@@ -123,8 +123,8 @@ export const LoginForm = () => {
   };
 
   return (
-    <LoginFormWrapper>
-      <LoginFormStyled onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate>
+    <LoginFormStyled>
+      <Form onSubmit={handleSubmit(onSubmit, onInvalid)} noValidate>
         <Fields>
           <FormField
             id="login-email"
@@ -166,7 +166,7 @@ export const LoginForm = () => {
           </Button>
         </FormButtonGroup>
         {status && <p>{status}</p>}
-      </LoginFormStyled>
+      </Form>
 
       <AccountLinks>
         <li>
@@ -176,6 +176,6 @@ export const LoginForm = () => {
           <AccountLink to={ROUTES.signup}>Opret profil</AccountLink>
         </li>
       </AccountLinks>
-    </LoginFormWrapper>
+    </LoginFormStyled>
   );
 };

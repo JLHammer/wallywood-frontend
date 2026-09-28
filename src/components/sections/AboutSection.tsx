@@ -4,8 +4,6 @@ import { ABOUT_NOTE, ABOUT_PARAGRAPHS } from "../../data/about";
 import star from "../../assets/images/star.jpg";
 import { PosterFrame } from "../ui/poster/PosterFrame";
 
-const AboutSectionStyled = styled.section``;
-
 const AboutContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -50,7 +48,7 @@ const AboutText = styled.div`
 
 export const AboutSection = () => {
   return (
-    <AboutSectionStyled>
+    <section>
       <h1>Om os</h1>
       <AboutContent>
         <AboutImageWrapper>
@@ -70,6 +68,6 @@ export const AboutSection = () => {
           </p>
         </AboutText>
       </AboutContent>
-    </AboutSectionStyled>
+    </section>
   );
 };
