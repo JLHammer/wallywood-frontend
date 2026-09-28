@@ -8,7 +8,6 @@ export const useLikedPosters = () => {
 
   return useFetch<LikesResponse>(
     token ? `${API_URL}/likes` : null,
-    "GET",
     token,
   );
 };

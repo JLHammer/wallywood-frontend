@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 
-type HttpMethod = "GET" | "PUT" | "POST" | "DELETE";
-
-export const useFetch = <T>(
-  url: string | null,
-  method: HttpMethod = "GET",
-  token?: string | null,
-) => {
+// Generic GET hook that all data hooks build on. Pass `null` as the url to
+// skip the request, e.g. while a required value is missing.
+export const useFetch = <T>(url: string | null, token?: string | null) => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(url !== null);
+  // Bumping this re-runs the effect, which is how refetch works.
   const [reloadCount, setReloadCount] = useState(0);
 
   useEffect(() => {
     if (!url) return;
+
+    // Set in the cleanup when the url changes or the component unmounts, so a
+    // slow, outdated response can't overwrite the newest data.
+    let ignore = false;
 
     const fetchData = async () => {
       setIsLoading(true);
@@ -21,13 +22,7 @@ export const useFetch = <T>(
 
       try {
         const response = await fetch(url, {
-          method: method,
-          headers: {
-            "Content-type": "application/json",
-            ...(token && {
-              Authorization: `Bearer ${token}`,
-            }),
-          },
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
 
         if (!response.ok) {
@@ -36,22 +31,26 @@ export const useFetch = <T>(
 
         const result = await response.json();
 
-        setData(result);
+        if (!ignore) setData(result);
       } catch (error) {
-        if (error instanceof Error) {
-          setError(error.message);
+        if (!ignore) {
+          setError(error instanceof Error ? error.message : "Unknown error");
         }
       } finally {
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 200);
+        if (!ignore) setIsLoading(false);
       }
     };
 
     fetchData();
-  }, [url, method, token, reloadCount]);
+
+    return () => {
+      ignore = true;
+    };
+  }, [url, token, reloadCount]);
 
   const refetch = () => setReloadCount((count) => count + 1);
+
+  if (!url) return { data: null, error: null, isLoading: false, refetch };
 
   return { data, error, isLoading, refetch };
 };
