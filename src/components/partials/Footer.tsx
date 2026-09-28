@@ -24,7 +24,6 @@ const FooterStyled = styled.footer`
     gap: 0;
     height: ${theme.desktop.sizes.footerHeight};
     margin: ${theme.desktop.sizes.footerTopOffset} 0 0;
-    border-top: ${theme.borders.width} solid ${theme.colors.bordeaux};
   }
 `;
 
