@@ -5,7 +5,6 @@ import { SORT_OPTIONS, getSortOption } from "../../data/sortOptions";
 import { theme } from "../../styles/theme";
 import { Select } from "./form/Select";
 import { SelectField } from "./form/SelectField";
-import { HiddenLabel } from "./form/HiddenLabel";
 
 const SortSelectStyled = styled.div`
   display: flex;
@@ -33,9 +32,7 @@ export const SortSelect = () => {
     <SortSelectStyled>
       <SortHeading>Sorter</SortHeading>
       <SelectField>
-        <HiddenLabel htmlFor="sort-select">Sorter efter</HiddenLabel>
         <Select
-          id="sort-select"
           value={getSortOption(searchParams.get("sort")).value}
           onChange={handleSortChange}
         >

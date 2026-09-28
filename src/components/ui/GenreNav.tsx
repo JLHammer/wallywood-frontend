@@ -6,7 +6,6 @@ import { ROUTES, genrePath } from "../../router/routes";
 import { theme } from "../../styles/theme";
 import { Select } from "./form/Select";
 import { SelectField } from "./form/SelectField";
-import { HiddenLabel } from "./form/HiddenLabel";
 
 const GenreNavStyled = styled.nav`
   display: flex;
@@ -79,12 +78,7 @@ export const GenreNav = () => {
       <h2>Filtre</h2>
 
       <GenreSelectField>
-        <HiddenLabel htmlFor="genre-select">Genre</HiddenLabel>
-        <Select
-          id="genre-select"
-          value={genreSlug}
-          onChange={handleGenreChange}
-        >
+        <Select value={genreSlug} onChange={handleGenreChange}>
           <option value="">Alle genrer</option>
           {genres.map((genre) => (
             <option key={genre.id} value={genre.slug}>

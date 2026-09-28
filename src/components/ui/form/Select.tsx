@@ -76,16 +76,15 @@ const SelectStyled = styled.select`
 `;
 
 interface SelectProps {
-  id: string;
   value: string;
   onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   children: ReactNode;
 }
 
-export const Select = ({ id, value, onChange, children }: SelectProps) => {
+export const Select = ({ value, onChange, children }: SelectProps) => {
   return (
     <SelectWrapper>
-      <SelectStyled id={id} value={value} onChange={onChange}>
+      <SelectStyled value={value} onChange={onChange}>
         {children}
       </SelectStyled>
       <SelectChevron />
