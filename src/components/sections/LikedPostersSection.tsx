@@ -37,12 +37,12 @@ const LikedPostersList = styled.ul`
 `;
 
 export const LikedPostersSection = () => {
-  const { data, error, isLoading } = useLikedPosters();
+  const { posters, error, isLoading } = useLikedPosters();
 
   const renderPosters = () => {
     if (isLoading) return <Loader />;
-    if (error || !data) return <p>Kunne ikke hente plakater</p>;
-    if (data.likes.length === 0)
+    if (error) return <p>Kunne ikke hente plakater</p>;
+    if (posters.length === 0)
       return (
         <>
           <p>Du har ikke liket nogen plakater endnu</p>
@@ -54,7 +54,7 @@ export const LikedPostersSection = () => {
 
     return (
       <LikedPostersList>
-        {data.likes.map(({ poster }) => (
+        {posters.map((poster) => (
           <li key={poster.id}>
             <LikedPostersCard poster={poster} />
           </li>

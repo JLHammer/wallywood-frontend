@@ -49,15 +49,15 @@ export const PostersListSection = () => {
   const page = Number.isInteger(pageParam) && pageParam > 0 ? pageParam : 1;
   const { sortBy, sort } = getSortOption(searchParams.get("sort"));
 
-  const { data, error, isLoading } = usePosters({
+  const { posters, total, totalPages, error, isLoading } = usePosters({
     page,
     limit: 24,
     sortBy,
     sort,
     genreSlug,
   });
-  const { data: genresData } = useGenres();
-  const genre = genresData?.genres.find((g) => g.slug === genreSlug);
+  const { genres } = useGenres();
+  const genre = genres.find((g) => g.slug === genreSlug);
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
@@ -65,20 +65,20 @@ export const PostersListSection = () => {
 
   const renderPosters = () => {
     if (isLoading) return <Loader />;
-    if (error || !data) return <p>Kunne ikke hente plakater</p>;
-    if (data.posters.length === 0) return <p>Ingen plakater i denne genre</p>;
+    if (error) return <p>Kunne ikke hente plakater</p>;
+    if (posters.length === 0) return <p>Ingen plakater i denne genre</p>;
 
     return (
       <>
         <ListTitle>
-          {genre?.title ?? "Alle plakater"} - {data.total}{" "}
-          {data.total === 1 ? "plakat" : "plakater"}
+          {genre?.title ?? "Alle plakater"} - {total}{" "}
+          {total === 1 ? "plakat" : "plakater"}
         </ListTitle>
         <ListViewPostersList>
-          {data.posters.map((p, index) => (
+          {posters.map((p, index) => (
             <li key={p.id}>
               <PostersListCard poster={p} />
-              {index < data.posters.length - 1 && (
+              {index < posters.length - 1 && (
                 <Divider
                   width="calc(100% / 2)"
                   marginBlock={theme.mobile.spacing.l}
@@ -87,7 +87,7 @@ export const PostersListSection = () => {
             </li>
           ))}
         </ListViewPostersList>
-        <Pagination page={data.page} totalPages={data.totalPages} />
+        <Pagination page={page} totalPages={totalPages} />
       </>
     );
   };

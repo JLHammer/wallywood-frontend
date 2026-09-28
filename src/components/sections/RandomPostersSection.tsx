@@ -1,6 +1,6 @@
 import { theme } from "../../styles/theme";
 import styled from "styled-components";
-import { useRandomPosters } from "../../hooks/usePosters";
+import { useRandomPosters } from "../../hooks/useRandomPosters";
 import { RandomPostersCard } from "../ui/poster/RandomPostersCard";
 import { Loader } from "../ui/Loader";
 import { Divider } from "../ui/Divider";
@@ -55,7 +55,7 @@ export const RandomPostersSection = () => {
 
   const renderContent = () => {
     if (error) return <p>Kunne ikke hente plakater</p>;
-    if (isLoading || !posters) return <Loader />;
+    if (isLoading) return <Loader />;
 
     return (
       <RandomPostersList>

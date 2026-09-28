@@ -1,8 +1,12 @@
 import { useFetch } from "./useFetch";
 import { API_URL } from "../utils/api";
-import type { Genre, GenresResponse } from "../types";
+import type { GenresResponse } from "../types";
 
-export const useGenre = (id: string | number) =>
-  useFetch<Genre>(`${API_URL}/genres/${id}`);
+// Fetches all genres for the genre navigation.
+export const useGenres = () => {
+  const { data, error, isLoading } = useFetch<GenresResponse>(
+    `${API_URL}/genres`,
+  );
 
-export const useGenres = () => useFetch<GenresResponse>(`${API_URL}/genres`);
+  return { genres: data?.genres ?? [], error, isLoading };
+};

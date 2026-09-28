@@ -62,12 +62,12 @@ const FavoritesLink = styled(Link)`
 `;
 
 export const GenreNav = () => {
-  const { data, error, isLoading } = useGenres();
+  const { genres, error, isLoading } = useGenres();
   const { genreSlug = "" } = useParams();
   const navigate = useNavigate();
 
   if (isLoading) return null;
-  if (error || !data) return <p>Kunne ikke hente genrer</p>;
+  if (error) return <p>Kunne ikke hente genrer</p>;
 
   const handleGenreChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const slug = event.target.value;
@@ -86,7 +86,7 @@ export const GenreNav = () => {
           onChange={handleGenreChange}
         >
           <option value="">Alle genrer</option>
-          {data.genres.map((genre) => (
+          {genres.map((genre) => (
             <option key={genre.id} value={genre.slug}>
               {genre.title}
             </option>
@@ -97,7 +97,7 @@ export const GenreNav = () => {
       <GenreList>
         <h3>Genre</h3>
         <ul>
-          {data.genres.map((genre) => (
+          {genres.map((genre) => (
             <li key={genre.id}>
               <GenreLink to={genrePath(genre.slug)}>{genre.title}</GenreLink>
             </li>

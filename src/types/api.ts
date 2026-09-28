@@ -25,6 +25,10 @@ export interface PostersResponse {
   totalPages: number;
 }
 
+export interface RandomPostersResponse {
+  posters: Poster[];
+}
+
 export interface GenresResponse {
   genres: Genre[];
 }
