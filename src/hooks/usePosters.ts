@@ -11,9 +11,9 @@ interface PostersQuery {
   genreSlug?: string;
 }
 
-// Fetches one page of posters, filtered and sorted by the given query.
+// Fetches one page of posters, filtered and sorted by the given query
 export const usePosters = (query: PostersQuery = {}) => {
-  // Only send the params that are set, so the API uses its defaults for the rest.
+  // Only send the params that are set, so the API uses its defaults for the rest
   const params = new URLSearchParams();
   Object.entries(query).forEach(([key, value]) => {
     if (value !== undefined) params.set(key, String(value));

@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 
-// Generic GET hook that all data hooks build on. Pass `null` as the url to
-// skip the request, e.g. while a required value is missing.
+// Generic GET hook that all data hooks build on
+// Pass `null` as the url to skip the request, e.g. while a required value is missing
 export const useFetch = <T>(url: string | null, token?: string | null) => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(url !== null);
-  // Bumping this re-runs the effect, which is how refetch works.
+  // Bumping this re-runs the effect, which is how refetch works
   const [reloadCount, setReloadCount] = useState(0);
 
   useEffect(() => {
     if (!url) return;
 
     // Set in the cleanup when the url changes or the component unmounts, so a
-    // slow, outdated response can't overwrite the newest data.
+    // slow, outdated response can't overwrite the newest data
     let ignore = false;
 
     const fetchData = async () => {

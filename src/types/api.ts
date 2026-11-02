@@ -1,3 +1,5 @@
+// API data types and endpoint response types
+
 export interface Genre {
   id: number;
   title: string;
@@ -33,16 +35,26 @@ export interface GenresResponse {
   genres: Genre[];
 }
 
-export interface UserRating {
-  id: number;
-  userId: number;
+export interface Like {
   posterId: number;
-  numStars: number;
+  createdAt: string;
+  poster: Poster;
 }
 
-export interface UserRatingsResponse {
-  userRatings: UserRating[];
+export interface LikesResponse {
+  likes: Like[];
 }
+
+// export interface UserRating {
+//   id: number;
+//   userId: number;
+//   posterId: number;
+//   numStars: number;
+// }
+
+// export interface UserRatingsResponse {
+//   userRatings: UserRating[];
+// }
 
 export interface User {
   id: number;
@@ -54,14 +66,4 @@ export interface User {
 export interface AuthResponse {
   accessToken: string;
   user: User;
-}
-
-export interface Like {
-  posterId: number;
-  createdAt: string;
-  poster: Poster;
-}
-
-export interface LikesResponse {
-  likes: Like[];
 }

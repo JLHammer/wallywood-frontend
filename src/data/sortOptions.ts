@@ -16,6 +16,6 @@ export const SORT_OPTIONS = [
 ] as const;
 
 // Returns the option matching ?sort=
-// If no match, returns the first option (name-asc)
+// If no match, returns name-asc
 export const getSortOption = (value: string | null) =>
   SORT_OPTIONS.find((option) => option.value === value) ?? SORT_OPTIONS[0];

@@ -4,7 +4,7 @@ import { API_URL } from "../utils/api";
 import type { Poster, RandomPostersResponse } from "../types";
 
 // The posters are saved in sessionStorage so the front page keeps showing the
-// same posters while the tab is open, instead of new ones on every visit.
+// same posters while the tab is open, instead of new ones on every visit
 const RANDOM_POSTERS_KEY = "randomPosters";
 
 const loadRandomPosters = (): Poster[] | null => {
@@ -25,8 +25,8 @@ export const useRandomPosters = (count = 4) => {
     }
   }, [data]);
 
-  // Clearing the saved posters enables the request again. refetch is still
-  // needed when they were already fetched, because the url does not change.
+  // Clearing the saved posters enables the request again
+  // refetch is still needed when they were already fetched, because the url does not change
   const getNewPosters = () => {
     setSavedPosters(null);
     refetch();
